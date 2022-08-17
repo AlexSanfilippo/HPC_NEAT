@@ -136,19 +136,32 @@ void calcOffspring(std::vector <Species> *pop_ptr, const int MAX_POP){
 				if(pop[i].get_death_clock() == MIDNIGHT){
 					pop[i].setOffspring(0);
 					std::cout << "======DEATHCLOCK STRIKES MIDNIGHT======\n";
-				}
+				}	
 				else{
 					pop[i].setOffspring( ceil( (sumadj_vec[i]/sumOfSpeciesAdjusted) * double(MAX_POP) ) );
 				}
-
+				//pop[i].setOffspring(0);
 			}
-		else{
+			else{ //reset death clock and give offspring as normal
+				pop[i].set_death_clock(0);
+				if(!(sumadj_vec[i] == 0)){					
+					pop[i].setOffspring( ceil( (sumadj_vec[i]/sumOfSpeciesAdjusted) * double(MAX_POP) ) );
+				}
+				else{
+					pop[i].setOffspring(0);
+				}
+			}
+		}
+		else{ //ie, if species's size is 0
 			pop[i].setOffspring(0);
 		}
-		//std::cout << "offspring = " << pop[i].getOffspring() << " for species "<< i <<std::endl;
+		std::cout << "sumadj of this species = " << sumadj_vec[i] << " sumOfSpeciesAdjusted = " << sumOfSpeciesAdjusted << "\n";
+		std::cout << "offspring = " << pop[i].getOffspring() << " for species "<< pop[i].get_name() <<std::endl;
 	}	
 	//sleep(4);
 }
+				
+				
 /*
 void calcOffspring(std::vector <Species> *pop_ptr, const int MAX_POP){
 	std::vector<Species> &pop = *pop_ptr;
