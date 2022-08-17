@@ -907,7 +907,9 @@ void reproduce(std::vector <Species> *pop_ptr, const int MAX_POP, NOV *nov){
 					//then make a new species with this child as its rep
 					string old_name = new_pop[i].get_name();
                                         int subspecies_count = new_pop[i].get_num_subspecies();
-                                        Species new_spec = Species(child, old_innov_count, old_name, subspecies_count);  //create new species with child genome as first genome
+                                    
+					new_pop[i].add_subspecies();
+					Species new_spec = Species(child, old_innov_count, old_name, subspecies_count);  //create new species with child genome as first genome
 					//above constructor handles setting the representative.
 					new_pop.push_back(new_spec);
 					//std::cout << "added new species."<<std::endl;
