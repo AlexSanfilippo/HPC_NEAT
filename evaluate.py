@@ -25,12 +25,13 @@ rank = sys.argv[1]
 
 
 ####CONTROLS AND HYPERPARAMETERS
-#seed = 2 #1996
+seed = 2 #1996
 max_steps = 500
 
+set_seed = True
 
 
-#np.random.seed(seed)
+np.random.seed(seed)
 
 #1 create input nodes (the same for all genomes)
 input1 = tf.keras.Input(shape=(1,), name = 'INPUT_1')
@@ -238,7 +239,9 @@ with open(filename,'r') as read_obj:
                 #env = gym.make('CartPole-v1', render_mode='human',
                 #               new_step_api=True)                 
                 env = gym.make('CartPole-v1') #run without rendering
-                #env.seed(seed)
+                
+                if set_seed:
+                    env.seed(seed)
                 #redefine observation space
 
 
