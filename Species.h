@@ -40,7 +40,48 @@ class Species {
 
 		std::vector <Genome> genome_vec; //vector of genomes in this species
 		
+					
+		/**
+ 		* @brief returns this species name
+ 		* @return std::string name*/
+		string get_name(){return name; }
 		
+		/**
+ 		* @brief sets this species name
+ 		* @return void*/
+		void set_name(string n){
+			name = n; 
+		}
+		/**
+ 		* @brief return number of subspecies that broke away from this species
+ 		* */
+		int get_num_subspecies(){return num_subspecies; }
+		
+		/**
+ 		* @breif set number of subspecies
+ 		* */
+		void set_num_subspecies(int n){
+			num_subspecies = n;
+		}
+		/**
+ 		* @brief increment the number of subspecies
+ 		* */
+		void add_subspecies(){
+			num_subspecies += 1;
+		}
+
+		//DEATH CLOCK FXNS
+		void set_death_clock(int n){
+			death_clock = n;
+		}	
+		int get_death_clock(){
+			return death_clock;
+		}
+		void add_death_clock(){
+			death_clock += 1;
+		}
+
+
 		Genome rep; //ptr to representative genome
 		int rep_index;
 		/**
