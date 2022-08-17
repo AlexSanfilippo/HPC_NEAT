@@ -22,12 +22,13 @@ class Species {
 		Species(int innov_count){
 			Gene g = Gene(0,0,0,true);
 			g.setInnovCount(innov_count);
+			name = "1";	
 		}
 		/*for making a new species given a genome that does not
  		* fit into any existing species.  Not sure if need a copy
  		* constructor for Genome for this to work right.  Issue 
  		* may arise with deep vs shallow copying.*/
-		Species(Genome g, int innov_count){
+		Species(Genome g, int innov_count, string parent_name, int parent_subspecies_count){	
 			genome_vec.push_back(g);
 			rep = g; 
 			rep_index = 0;
@@ -35,6 +36,9 @@ class Species {
 			//update innov_count 
 			Gene g2 = Gene(0,0,0,true);
                         g2.setInnovCount(innov_count);
+	
+			//give this species a name based on parents name
+			name = parent_name + "_" + to_string(parent_subspecies_count+1);
 
 		}
 

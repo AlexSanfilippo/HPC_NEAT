@@ -58,9 +58,9 @@ int main(int argc, char **argv){
 		
 
 	/*SIMULATION HYPERPARAMETERS*/
-	const int POP_SIZE  = 20; //number of genomes in the whole population
+	const int POP_SIZE  = 150; //number of genomes in the whole population
 	const int NUM_MUT = 1; //number of mutation
-	const int NUM_GEN = 3; //number of generations	
+	const int NUM_GEN = 30; //number of generations	
 	int gen_count = 0;
 	NOV nov(4,1); //create Nodal Order Vector object
 	
@@ -483,7 +483,7 @@ int main(int argc, char **argv){
 			fit_fp << pop_avg_fitness << endl;	
 			cout << "Species Stats:\n";
 			for(int j = 0; j < (int)pop.size(); j++){
-				cout << "       Species " << j << ": size: " << pop[j].size() << ", avg Fit: "\
+				cout << "       Species " << pop[j].get_name() << ": size: " << pop[j].size() << ", avg Fit: "\
 					<< pop[j].getFitness() << "\n";
 			}
 	 
@@ -523,7 +523,7 @@ int main(int argc, char **argv){
 		cout << "Number of Genomes: " << calcTotalPop(&pop) << std::endl;
 		cout << "Genomes per Species:\n";
 		for(int j = 0; j < (int)pop.size(); j++){
-			cout << "	Species " << j << " has " << pop[j].size() << " genomes\n";
+			cout << "	Species " << pop[j].get_name() << " has " << pop[j].size() << " genomes\n";
 		}
 	}
 	
@@ -837,6 +837,8 @@ void reproduce(std::vector <Species> *pop_ptr, const int MAX_POP, NOV *nov){
 			Species empty_spec = Species(old_innov_count);
 			new_pop.push_back(empty_spec); //add empty species to new pop
 			new_pop[sec_index].rep = pop[i].rep; //deep copy?
+			new_pop[sec_index].set_name( pop[i].get_name());
+			new_pop[sec_index].set_num_subspecies(pop[i].get_num_subspecies());
 			sec_index++;
 		}
 		else{
@@ -903,7 +905,9 @@ void reproduce(std::vector <Species> *pop_ptr, const int MAX_POP, NOV *nov){
 				if(child_placed == false){ //if no compatible species found for this child
 					//std::cout << "adding new species..."<<std::endl;
 					//then make a new species with this child as its rep
-					Species new_spec = Species(child, old_innov_count); //create new species with child genome as first genome
+					string old_name = new_pop[i].get_name();
+                                        int subspecies_count = new_pop[i].get_num_subspecies();
+                                        Species new_spec = Species(child, old_innov_count, old_name, subspecies_count);  //create new species with child genome as first genome
 					//above constructor handles setting the representative.
 					new_pop.push_back(new_spec);
 					//std::cout << "added new species."<<std::endl;

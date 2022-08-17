@@ -296,7 +296,7 @@ double compat(Genome A, Genome B){
 	std::cout << "E = " << E << std::endl;
 	std::cout << "D = " << D << std::endl;
 	*/
-	double delta = 4*E/N + 4*D/N + 4*0.5*W; //1,1,0.5
+	double delta = 2*E/N + 2*D/N + 0.5*W; //1,1,0.5
 	return delta;
 };
 
