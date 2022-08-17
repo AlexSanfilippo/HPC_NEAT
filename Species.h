@@ -200,7 +200,10 @@ class Species {
 	private:
 		int offspring; //number of children to produce during reproduction
 		double fitness; //the average fitness of this species
-
+			
+		string name;
+		int num_subspecies = 0;
+		int death_clock = 0; //count up each time species is sickly ( <5% size of pop and <avg pop fitness
 };
 
 #endif
