@@ -19,16 +19,19 @@ import csv
 import sys
 
 
+TF_ENABLE_ONEDNN_OPTS=0
+
+
 rank = sys.argv[1]
 #print("in evaluate.py, rank detected = ", rank);
 #set seed to get same results on same NNs and same inputs
 
 
 ####CONTROLS AND HYPERPARAMETERS
-seed = 2 #1996
-max_steps = 500
+seed = 737 #2 #1996
+max_steps = 2000
 
-set_seed = True
+set_seed = False
 
 
 np.random.seed(seed)

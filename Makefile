@@ -5,7 +5,7 @@
 #sequential
 #CC = g++
 CC = mpicxx
-CFLAGS = -std=c++11 -Wall -Wreturn-type -g
+CFLAGS = -std=c++11 -O3 -Wall -Wreturn-type -g
 OBJS = testingGrounds.o cpp_to_python.o
 EXECS = testingGrounds cpp_to_python
 all:${EXECS}
