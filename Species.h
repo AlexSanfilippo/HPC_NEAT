@@ -1,6 +1,7 @@
 /** @author Alexander Sanfilippo
  *  * @date 11-06-2022
- *   * @TODO create classes for Species, which holds a vector of Genomes*/
+ *   * @TODO clean up the code, add additional comments
+ */
 
 #ifndef SPECIES_H_8f60af27
 #define SPECIES_H_8f60af27
@@ -44,6 +45,50 @@ class Species {
 
 		std::vector <Genome> genome_vec; //vector of genomes in this species
 		
+
+		/**
+ 		* @brief returns the highest fitness achieved by this species*/
+		double getHighestFitness(){
+			return highest_fitness;
+		} 
+		
+		/**
+ 		* @breif getter function for last_improved, 
+ 		* */
+		int getLastImproved(){
+			return last_improved;
+		}
+			
+		/**
+ 		* @breif setter function for last_improved, 
+ 		* */
+		void setLastImproved(int last){
+			last_improved = last;
+		}
+		
+		/**
+ 		* @breif setter function for last_improved, 
+ 		* */
+		void setHighestFitness(double fit){
+			highest_fitness = fit;
+		}
+		
+		
+		/**
+ 		 * @brief check if new species fitness record has been acheived
+ 		 * @param current_fitness the average fitness of this species this Gen.
+ 		 *
+ 		 */
+		void checkImprovement(double current_fitness){
+			if(current_fitness < highest_fitness){ //if no improvement
+				last_improved += 1; //count number of gens. since last improvement
+			}
+			else{
+				last_improved = 0; //reset generation counter
+				highest_fitness = current_fitness; //set new best species fitness
+			}
+		}
+
 					
 		/**
  		* @brief returns this species name
@@ -84,10 +129,13 @@ class Species {
 		void add_death_clock(){
 			death_clock += 1;
 		}
+		
 
 
-		Genome rep; //ptr to representative genome
-		int rep_index;
+		Genome rep; //copy of representative genome
+		int rep_index; //index of representative genome
+
+
 		/**
  		* @brief randomly chooses a new representative genome for speciation
  		*
@@ -96,13 +144,13 @@ class Species {
 			auto uid = std::uniform_int_distribution<>(0,genome_vec.size() - 1); 
 			int rand_index = uid(mygen);
 			rep_index = rand_index;
-			rep = genome_vec[rand_index]; //is a pointer simpler than a copy here?
+			rep = genome_vec[rand_index]; 
 		}
 		/**
  		* @brief Wrapper for std::vector size function
  		* */
 		int size(){
-			return genome_vec.size();
+			return int(genome_vec.size());
 		}
 		/**
  		* @brief sets the avg fitness of the species
@@ -244,11 +292,14 @@ class Species {
 
 	private:
 		int offspring; //number of children to produce during reproduction
-		double fitness; //the average fitness of this species
-			
+		double fitness; //the average (non-adjusted) fitness of this species
+				
 		string name;
 		int num_subspecies = 0;
 		int death_clock = 0; //count up each time species is sickly ( <5% size of pop and <avg pop fitness
+
+		int last_improved = 0; //generations since this species achieved a higher fitness
+		double highest_fitness = 0; //highest fitness this species has ever achieved 
 };
 
 #endif

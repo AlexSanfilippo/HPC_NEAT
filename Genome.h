@@ -198,7 +198,7 @@ class Genome{
  		* @brief wrtes the node_inputs and node_weights vectors to a file for keras to read
  		*
  		* **/
-		void  writeToFile(ofstream *fp, int genome_index){
+		void  writeToFile(ofstream *fp, int genome_index /*unused*/){
 			//write the genome's nodal info to the .csv file	
 			for(int i = 1; i < int( node_inputs.size() ); i++){ //for each node
 				if(node_inputs[i][0] > 0){//if node has at least 1 input
@@ -305,6 +305,13 @@ class Genome{
 		}
 		*/
 
+		void clearNodeInfo(){		
+			node_info_1d.clear();
+			row_lens_1d.clear();
+			node_weights.clear();
+			node_inputs.clear();
+		}
+
 		/**
  		* @brief makes a vector of all the Genome's node's and their weights
  		* */
@@ -322,11 +329,17 @@ class Genome{
 				double w = gene_vec[i].getWeight();
 				bool enabled = gene_vec[i].getEnabled();
 				
+				//temp remove this if to fix layer not found issue possibly
 				if(enabled){ //only enabled genes are built on the NN
 					node_inputs[output][0] += 1; //increment the input-node count
 					node_inputs[output].push_back(input);  //add this input-node to the list
 					node_weights[output].push_back(w); //add weight to the weight list
 				}
+				/*
+				else{
+					std::cout << "caught a disabled genome with summary:\n";
+					gene_vec[i].summary();
+				} */
 			}
 
 			convertNodeInfo1d(); //make the 1d input and weight vectors
@@ -355,23 +368,32 @@ class Genome{
  		*
  		* */
 		void convertNodeInfo1d(){
-			//int count = 0; //counts value weve added to node_inputs_1
 			//std::cout << "\n in convertNodeInfo1d() node_inputs.size()="<<node_inputs.size()<<" \n";
 			for(int i = 0; i < int(node_inputs.size()); i++){ //for each node(row)
+				bool skip = false;
 				for(int j = 0; j < int(node_inputs[i].size()); j++){ //for each elm (input)
-					node_info_1d.push_back( node_inputs[i][j] );
 					if(j==0){ //if at first elm (the inputs count)
 						//need row lengths to put humpty back together again
 						//when we write to file
-						row_lens_1d.push_back(  (node_inputs[i][j]*2) + 1 );
+						
+						if(node_inputs[i][j] != 0){
+							row_lens_1d.push_back(  (node_inputs[i][j]*2) + 2 );
+							node_info_1d.push_back(i); //record the node number
+						}
+						else{
+							skip = true;
+						}
 					}
-					//count += 1;
+					if(skip == false){	
+						node_info_1d.push_back( node_inputs[i][j] );
+					}
 				}
-				for(int j = 0; j < int(node_weights[i].size()); j++){
-					node_info_1d.push_back( node_weights[i][j]) ;
+				if(skip == false){
+					for(int j = 0; j < int(node_weights[i].size()); j++){
+						node_info_1d.push_back( node_weights[i][j]);
+					}
 				}
 			}
-			//std::cout << "at end of convertNodeInfo() node_info_1d.size() = " <<node_info_1d.size() << std::endl;
 		}
 
 		/***
@@ -379,18 +401,11 @@ class Genome{
  		* @param rng_vec a pointer to a vector of random doubles
  		* */
 		void mutate(NOV *nov){
-			//std::cout << "inside mutate()\n";
-			/*WIP: IN-Function RNG generation*/
-			//auto uid = std::uniform_int_distribution<>(0,10); //value between 0 and 10, inclusive?
-			//uid(gen);
-			//
 			//distribution for normal, doubles, 0 to 1 (probabilities)
 			auto urd = std::uniform_real_distribution<>(0,1); //random probability
 			auto uid = std::uniform_int_distribution<>(0,gene_vec.size() - 1); //random gene
 			/*NOTE: may need min to be the highest node index of the input nodes, not sure if
  			* this will cause problems otherwise.*/
-			//auto uid_node = std::uniform_int_distribution<>(1, nov->size()); //random node(neuron)
-			//auto uid_node = std::uniform_int_distribution<>(1, nov->size()); //random INPUT node(neuron)
 				
 			/*CHANGE WEIGHTS OF NODES*/
 			for(unsigned long int i = 0; i < gene_vec.size(); i++){ //for each gene
@@ -409,8 +424,6 @@ class Genome{
 						double old_weight = gene_vec[i].getWeight();
 						gene_vec[i].setWeight(old_weight + old_weight*urd_p(gen));	
 						*/
-					/*/std::cout << "PERTURBED gene #" << gene_vec[i].getInnov() << "'s weight to " \
-						<< gene_vec[i].getWeight() << std::endl;  */
 					}
 					else{ //new weight
 						gene_vec[i].setWeight(urd_weight(gen));
@@ -428,50 +441,50 @@ class Genome{
 			//	int cur_innov = gene_vec[cur_index].getInnov();
 				//std::cout << "creating new node @ gene #" << cur_innov << std::endl;
 				//split the cur_index gene into 2 new genes, removing the original
-						int in = gene_vec[cur_index].getIn();
-						int out = gene_vec[cur_index].getOut();
-						double weight = gene_vec[cur_index].getWeight();
-						//node_count += 1; //increment count of nodes defined by Genome
-						node_count = nov->size();
-						Gene gene_a(in, node_count , 1, true); 
-						//std::cout << "ADDNODE mutation added cnx A tween " << in <<"-->"<<node_count<<"\n";
-						Gene gene_b(node_count, out, weight, true );
-						//std::cout << "ADDNODE mutation added cnx B tween " << node_count <<"-->"<<out<<"\n";
+				int in = gene_vec[cur_index].getIn();
+				int out = gene_vec[cur_index].getOut();
+				double weight = gene_vec[cur_index].getWeight();
+				//node_count += 1; //increment count of nodes defined by Genome
+				node_count = nov->size();
+				Gene gene_a(in, node_count , 1, true); 
+				//std::cout << "ADDNODE mutation added cnx A tween " << in <<"-->"<<node_count<<"\n";
+				Gene gene_b(node_count, out, weight, true );
+				//std::cout << "ADDNODE mutation added cnx B tween " << node_count <<"-->"<<out<<"\n";
 
-						/*std::cout << "created 2 new genes with in #'s" << gene_a.getInnov() <<\
-							gene_b.getInnov() << std::endl;
-						*/
-						//disable the old node
-						gene_vec[cur_index].setEnabled(false);
+				/*std::cout << "created 2 new genes with in #'s" << gene_a.getInnov() <<\
+					gene_b.getInnov() << std::endl;
+				*/
+				//disable the old node
+				gene_vec[cur_index].setEnabled(false);
 
-						//delete the old node from the Genome	--WRONG
-						//gene_vec.erase(gene_vec.begin() + cur_index);
-						//gene_vec.shrink_to_fit();
+				//delete the old node from the Genome	--WRONG
+				//gene_vec.erase(gene_vec.begin() + cur_index);
+				//gene_vec.shrink_to_fit();
 
-						//add new vectors to the genome	
-						gene_vec.push_back(gene_a);
-						gene_vec.push_back(gene_b);	
+				//add new genes to the genome	
+				gene_vec.push_back(gene_a);
+				gene_vec.push_back(gene_b);	
 
 
-						/*Add New Node to NOV vector*/
-						//std::cout << "in = " << in << ", out = " << out << endl;
-						if(nov->getNOV(in) != -1 && nov->getNOV(out) != 2){ 
-						//if neither in or out node is a final input or output
-							nov->addNode(nov->avgNodes(in,out)); //add nov to the NOV object's vector
-							//std::cout << "adding node tween 2 hidden nodes\n"; 
-						}
-						else if(nov->getNOV(in) == -1 && nov->getNOV(out) == 2){
-							//std::cout << "adding node tween 2 final in/out layers\n";
-							nov->addNode(); //add a random nov 
-						}
-						else if(nov->getNOV(in) == -1 && nov->getNOV(out) != 2){ //input to hidden
-							//std::cout << "add value tween input and hidden\n";
-							nov->addNode(-1, nov->getNOV(out));
-						}
-						else if(nov->getNOV(in) != -1 && nov->getNOV(out) == 2){ //hidden to output
-							//std::cout << "add node tween hidden and output\n";
-							nov->addNode(2, nov->getNOV(in));
-						}
+				/*Add New Node to NOV vector*/
+				//std::cout << "in = " << in << ", out = " << out << endl;
+				if(nov->getNOV(in) != -1 && nov->getNOV(out) != 2){ 
+				//if neither in or out node is a final input or output
+					nov->addNode(nov->avgNodes(in,out)); //add nov to the NOV object's vector
+					//std::cout << "adding node tween 2 hidden nodes\n"; 
+				}
+				else if(nov->getNOV(in) == -1 && nov->getNOV(out) == 2){
+					//std::cout << "adding node tween 2 final in/out layers\n";
+					nov->addNode(); //add a random nov 
+				}
+				else if(nov->getNOV(in) == -1 && nov->getNOV(out) != 2){ //input to hidden
+					//std::cout << "add value tween input and hidden\n";
+					nov->addNode(-1, nov->getNOV(out));
+				}
+				else if(nov->getNOV(in) != -1 && nov->getNOV(out) == 2){ //hidden to output
+					//std::cout << "add node tween hidden and output\n";
+					nov->addNode(2, nov->getNOV(in));
+				}
 			}
 			
 			/*ADD NEW LINK (CNXN)*/
@@ -579,13 +592,13 @@ class Genome{
 		const int MUT_MAGN = 3;  /*Max magnitude of set weight random values, +/-*/
 
 		int node_count = 5; //be sure to set according to initial architecture 
-		
+		double mim = 1; //mutation intensity multiplier.  1 by default. TP
 		/*MUTATION PROBABILITY THRESHOLDS*/
 		double P_weight = 0.8; //chance this genome will mutate its weight(s)
 		double P_perturb = 0.9; //chance to change a genomes weight by a multiple 
 		double P_newweight = 0.1; //chance to replace weight with new random weight
-		double P_newnode = 0.03; //add new gene for new node, splitting one into two //should be 0.03
-		double P_newlink = 0.05; //add new connection (link) between 2 existing nodes (new gene) 0.05
+		double P_newnode = 0.03*mim; //add new gene for new node, splitting one into two //should be 0.03
+		double P_newlink = 0.05*mim; //add new connection (link) between 2 existing nodes (new gene) 0.05
 			
 		/*Other Hypers*/
 };

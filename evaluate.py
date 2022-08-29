@@ -28,8 +28,8 @@ rank = sys.argv[1]
 
 
 ####CONTROLS AND HYPERPARAMETERS
-seed = 737 #2 #1996
-max_steps = 2000
+seed = 2001 #737 #2 #1996
+max_steps = 500
 
 set_seed = False
 
@@ -73,6 +73,10 @@ fit = []
 node_list = []
 
 layer_name_list = [] #stores list of names of all named layers-used for weight setting part
+
+
+#running total of number of genomes we've made and evaluated on this rank
+genome_count = 0
 
 #node_row = []
 from csv import reader
@@ -212,8 +216,8 @@ with open(filename,'r') as read_obj:
 ##                    print(cur.get_weights())
                 
 
-
-                        
+	
+                #print('rank: ', rank,',   genome: ', genome_count,)
                 #Set the Weights--Using Layer name
                 for name in layer_name_list:
                     cur_layer = model.get_layer(name)
@@ -285,10 +289,10 @@ with open(filename,'r') as read_obj:
         
                 node_list.clear();
                 node_row.clear();
-            #keras.backend.clear_session() #try to clear out old model completely   
-        #print(node_row)
-        layer_name_list.clear()
-        
+            	#keras.backend.clear_session() #try to clear out old model completely   
+        	#print(node_row)
+                layer_name_list.clear()
+                genome_count = genome_count + 1
         if(hit_END == False):
             node_list.append(node_row)
             
