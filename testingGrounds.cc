@@ -58,10 +58,9 @@ int main(int argc, char **argv){
 		
 
 	/*SIMULATION HYPERPARAMETERS*/
-	const int POP_SIZE  = 150; //number of genomes in the whole population
+	const int POP_SIZE  = 30; //number of genomes in the whole population
 	const int NUM_MUT = 1; //number of mutation
-	const int NUM_GEN = 3; //number of generations	
-
+	const int NUM_GEN = 80; //number of generations	
 
 	int gen_count = 0; //?
 
@@ -95,10 +94,16 @@ int main(int argc, char **argv){
 
 	ofstream best_species_fp;
 	best_species_fp.open("best_species.csv");
+		
+	ofstream genfp;
+	genfp.open("GENDATA.csv");	
+
+	ofstream hangtimefp;
+	hangtimefp.open("HANGTIME.csv");
 
 	auto start_runtime = std::chrono::high_resolution_clock::now();
 
-
+	
 	/*MPI BEGINS*/
 	int nprocs, myid;
 	MPI_Init(&argc, &argv);
@@ -443,11 +448,38 @@ int main(int argc, char **argv){
 		string e_caller = "python evaluate.py " + to_string(myid);
 		const char *callme = e_caller.c_str();
 		system(callme);
+		
+		//HANGTIME: record the hangtime of each
+		auto hangtime_start = std::chrono::high_resolution_clock::now();
 		MPI_Barrier(MPI_COMM_WORLD); //all ranks need to return their fitnesses first
+		 //for recording cumulative hangtime each generation
+		auto hangtime_stop = std::chrono::high_resolution_clock::now();
+
+		//create vector of start times from eachrank
+		double *hangtime_vec; //malloc this
+		hangtime_vec = (double*) malloc(nprocs * sizeof(double));
+
+		//convert hangtime to a double
+		auto hangtime_duration = std::chrono::duration_cast<std::chrono::microseconds>(hangtime_stop - hangtime_start);
+		auto hangtime_duration_double = double(hangtime_duration.count())/1000000; //convert to double and seconds
+		
+		//gather all hangtime start values from all ranks onto rank 0 (root)
+		MPI_Gather(&hangtime_duration_double, 1, MPI_DOUBLE, hangtime_vec, 1, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+
+		if(myid==0){
+									
+			double cum_hangtime = 0; //cumulative hagntime of this generation
+			for(int i = 0; i < nprocs; i++){
+				cum_hangtime += hangtime_vec[i];
+			}
+			hangtimefp << cum_hangtime << ",\n"; //record hangtime each generation to a file
+		}
+		free(hangtime_vec); //free the malloc'd pointer
+		//record evaluation time (overal, not per rank, not cumulative)
 		if(myid == 0){	
 			auto stop = std::chrono::high_resolution_clock::now();
 			auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-			timefp << "GEN " << g << ": " << double(duration.count())/1000000 << "\n";	
+			timefp << g << "," << double(duration.count())/1000000 << ",\n";	
 		}
 
 			
@@ -577,14 +609,23 @@ int main(int argc, char **argv){
 			cout << "Number of Genomes: " << calcTotalPop(&pop) << std::endl;
 			double pop_avg_fitness = calcAverageFitness(&pop);
 			cout << "Population Avg. Fitness (pre-cull): " << pop_avg_fitness << endl;	
-			fit_fp << pop_avg_fitness << endl;	
+			fit_fp << pop_avg_fitness << ",";	
 			cout << "Species Stats:\n";
 			for(int j = 0; j < (int)pop.size(); j++){
 				cout << "       Species " << pop[j].get_name() << ": size: " << pop[j].size() << ", avg Fit: "\
 					<< pop[j].getFitness() << "\n";
 			}
-	 
-
+	 		//repeat printout to file
+			genfp << "====== [pre-crossover] Generation " << gen_count << "/" << NUM_GEN-1 <<" ======\n";
+			genfp << "Number of Species:  " << pop.size() << "\n";
+			genfp << "Number of Genomes: " << calcTotalPop(&pop) << std::endl;
+			genfp << "Population Avg. Fitness (pre-cull): " << pop_avg_fitness << endl;	
+			genfp << "Species Stats:\n";
+			for(int j = 0; j < (int)pop.size(); j++){
+				genfp << "       Species " << pop[j].get_name() << ": size: " << pop[j].size() << ", avg Fit: "\
+					<< pop[j].getFitness() << "\n";
+			}
+			
 			
 			ngenomes = calcTotalPop(&pop);// record pre-reproduce pop size for rebalancing in Next Generation
 			/*reproduce (create new population from fittest of old pop)*/
@@ -595,7 +636,7 @@ int main(int argc, char **argv){
 			auto stop_gen_b = std::chrono::high_resolution_clock::now(); //stop timing before eval
 			auto neat_duration_a = std::chrono::duration_cast<std::chrono::microseconds>(stop_gen_a - start_gen_a); 
 			auto neat_duration_b = std::chrono::duration_cast<std::chrono::microseconds>(stop_gen_b - start_gen_b);
-			neat_time_fp << "GEN " << g << ": " << double((neat_duration_a.count() + neat_duration_b.count())) / 1000000 << "\n";
+			neat_time_fp << g << "," << double((neat_duration_a.count() + neat_duration_b.count())) / 1000000 << ",\n";
 		}
 		
 		//if we hit a fitness score we want, stop the program
@@ -611,7 +652,9 @@ int main(int argc, char **argv){
 	fit_fp.close();
 	best_genome_fp.close(); //best genome (nodal info)/gen
 	best_species_fp.close(); //best species avg fitness/gen
-	best_fitness_fp.close(); //best individual genome fitness/gen
+	best_fitness_fp.close(); //best individual genome fitness/gen	
+	genfp.close();
+	hangtimefp.close();
 	/*END OF MAIN LOOP: printing results to confirm code working*/
 	/*printing results...*/
 	if(myid == 0){
@@ -907,7 +950,7 @@ void reproduce(std::vector <Species> *pop_ptr, const int MAX_POP, NOV *nov){
 
 
 	/*HYPER PARAMETERS*/ //add these to a struct in a world_setting.h file later on
-	int dist_threshold = 3; //paper says 3
+	int dist_threshold = 2; //paper says 3
 	
 
 

@@ -415,15 +415,9 @@ class Genome{
 				if(urd(gen) < P_weight){ //if we mutate this GENE's weights
 					if(urd(gen) < P_perturb){ //perturb old weight
 						//NEW Method (14 Aug, 2022)
-						double old_weight = gene_vec[i].getWeight();
-						gene_vec[i].setWeight(max(0.25, old_weight + signbit(urd_sign(gen))\
-						*urd_p(gen)*old_weight));
+						double old_weight = gene_vec[i].getWeight(); 
+						gene_vec[i].setWeight(max(0.25, old_weight + signbit(urd_sign(gen))*urd_p(gen)*old_weight));
 
-						//OLD
-						/*
-						double old_weight = gene_vec[i].getWeight();
-						gene_vec[i].setWeight(old_weight + old_weight*urd_p(gen));	
-						*/
 					}
 					else{ //new weight
 						gene_vec[i].setWeight(urd_weight(gen));
@@ -597,8 +591,8 @@ class Genome{
 		double P_weight = 0.8; //chance this genome will mutate its weight(s)
 		double P_perturb = 0.9; //chance to change a genomes weight by a multiple 
 		double P_newweight = 0.1; //chance to replace weight with new random weight
-		double P_newnode = 0.03*mim; //add new gene for new node, splitting one into two //should be 0.03
-		double P_newlink = 0.05*mim; //add new connection (link) between 2 existing nodes (new gene) 0.05
+		double P_newnode = 0.12*mim; //add new gene for new node, splitting one into two //should be 0.03
+		double P_newlink = 0.24*mim; //add new connection (link) between 2 existing nodes (new gene) 0.05
 			
 		/*Other Hypers*/
 };

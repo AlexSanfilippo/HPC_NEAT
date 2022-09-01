@@ -5,7 +5,8 @@
 
 #CC = g++
 CC = mpicxx
-CFLAGS = -std=c++11 -O3 -Wall -Wreturn-type -g
+#CFLAGS = -std=c++11 -O3 -Wall -Wreturn-type -g
+CFLAGS = -std=c++11 -Wall -Wreturn-type -g
 OBJS = testingGrounds.o 
 EXECS = testingGrounds 
 all:${EXECS}
