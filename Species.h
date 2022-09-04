@@ -213,7 +213,8 @@ class Species {
 		
 		/**
  		* @brief sorts the Species by fitness
- 		* uses quick sort algorithm - used wikipedia pseudo as guide
+ 		* uses quick sort algorithm-written myself using the Hoare-scheme pseudocode found in 
+ 		* Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein. Introduction to Algorithms, Second Edition. MIT Press and McGraw-Hill, 2001. ISBN 0-262-03293-7. Chapter 7: Quicksort, pp. 145–164
  		* */
 		void sort(std::vector <Genome>& V, int low, int high){
 			//std::cout << "inside sort() low=" <<low<<", high="<<high << std::endl;

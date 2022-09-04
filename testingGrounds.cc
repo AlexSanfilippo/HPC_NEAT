@@ -43,7 +43,7 @@
 //put this function in crossover.h later
 void crossover(Genome g1, Genome g2, Genome * child);
 void matchMaker(Species s, int* parents, double avg_fitness);
-void reproduce(std::vector <Species> *pop_ptr, const int MAX_POP, NOV *nov);
+void reproduce(std::vector <Species> *pop_ptr, const int MAX_POP, const int DIST_THRESHOLD, NOV *nov);
 void  writeToFileRecv(ofstream *fp);
 
 
@@ -58,10 +58,10 @@ int main(int argc, char **argv){
 		
 
 	/*SIMULATION HYPERPARAMETERS*/
-	const int POP_SIZE  = 30; //number of genomes in the whole population
+	const int POP_SIZE  = 150; //number of genomes in the whole population
 	const int NUM_MUT = 1; //number of mutation
-	const int NUM_GEN = 80; //number of generations	
-
+	const int NUM_GEN = 50; //number of generations	
+	const int DIST_THRESHOLD = 1.5;
 	int gen_count = 0; //?
 
 	NOV nov(4/*inputs*/, 1/*outputs*/); //create Nodal Order Vector object
@@ -100,6 +100,9 @@ int main(int argc, char **argv){
 
 	ofstream hangtimefp;
 	hangtimefp.open("HANGTIME.csv");
+
+	ofstream popsizefp;
+	popsizefp.open("POPSIZE.csv");
 
 	auto start_runtime = std::chrono::high_resolution_clock::now();
 
@@ -204,6 +207,8 @@ int main(int argc, char **argv){
 	
 	//Mutate all the genomes in the species & calc fitness
 	for(int g = 0; g < NUM_GEN; g++){ //each gen
+
+		//record population size for ploting
 
 		/*[Parallel]*/
 		/* //OLD
@@ -401,14 +406,14 @@ int main(int argc, char **argv){
 			for(int i = 0; i < int(pop.size()); i++){//for each species 
 				for(int j = 0; j < pop[i].size(); j++){//for each genome
 					which_genome += 1;
-					genefp << "GENOME " << which_genome << "\n";
+					genefp << "GENOME " << which_genome << std::endl;
 					for(int k = 0; k < pop[i].genome_vec[j].size(); k++){ //for each gene
 						//write all 5 gene info bits to the file
 						genefp << pop[i].genome_vec[j].gene_vec[k].getInnov() <<\
 						", "<<pop[i].genome_vec[j].gene_vec[k].getIn() <<\
 						", "<<pop[i].genome_vec[j].gene_vec[k].getOut() <<\
 						", "<<pop[i].genome_vec[j].gene_vec[k].getWeight() <<\
-						", "<<pop[i].genome_vec[j].gene_vec[k].getEnabled() << ",\n"; 
+						", "<<pop[i].genome_vec[j].gene_vec[k].getEnabled() << std::endl; 
 					}
 				}
 			}
@@ -425,13 +430,13 @@ int main(int argc, char **argv){
 				for(int j = 0; j < pop[i].size(); j++){//for each genome
 					which_genome += 1;
 					int serial_count = 0;
-					serialfp << "GENOME " << which_genome << "\n";
+					serialfp << "GENOME " << which_genome << std::endl;
 					for(int k = 0; k < int(pop[i].genome_vec[j].row_lens_1d.size()); k++){ //for each row length in row)info_1d
 						for(int m = 0; m < pop[i].genome_vec[j].row_lens_1d[k]; m++){//for each item in row
 							serialfp <<  pop[i].genome_vec[j].node_info_1d[serial_count] << ", ";
 							serial_count += 1;
 						}
-						serialfp << "\n";	
+						serialfp << std::endl;	
 					}
 				}
 			}
@@ -472,14 +477,14 @@ int main(int argc, char **argv){
 			for(int i = 0; i < nprocs; i++){
 				cum_hangtime += hangtime_vec[i];
 			}
-			hangtimefp << cum_hangtime << ",\n"; //record hangtime each generation to a file
+			hangtimefp << cum_hangtime << std::endl; //record hangtime each generation to a file
 		}
 		free(hangtime_vec); //free the malloc'd pointer
 		//record evaluation time (overal, not per rank, not cumulative)
 		if(myid == 0){	
 			auto stop = std::chrono::high_resolution_clock::now();
 			auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-			timefp << g << "," << double(duration.count())/1000000 << ",\n";	
+			timefp << g << "," << double(duration.count())/1000000 << std::endl;	
 		}
 
 			
@@ -517,7 +522,7 @@ int main(int argc, char **argv){
 						gcount_best = gcount;
 					}
 					//STOP CONDITION
-					if(stoi(score) > 2000){
+					if(stoi(score) > 495){
 						cout << "built a perfect NN at " << gcount << endl;
 						int a = 0;
 						while(a <= gcount){
@@ -544,7 +549,7 @@ int main(int argc, char **argv){
 			}
 				
 			//record highest fitness of this generation
-			best_fitness_fp << g << "," << highest_fitness << ",\n";
+			best_fitness_fp << g << "," << highest_fitness << "," << std::endl;
 	
 			fpfitness.close();
 		}
@@ -585,7 +590,7 @@ int main(int argc, char **argv){
 					best_species = h;
 				}
 			}
-			best_species_fp << g << "," << best_species_fitness << ",\n"; //record best species fitness
+			best_species_fp << g << "," << best_species_fitness << "," << std::endl; //record best species fitness
 			
 			//record the best genome in all of pop for this generation
 		
@@ -619,6 +624,9 @@ int main(int argc, char **argv){
 			genfp << "====== [pre-crossover] Generation " << gen_count << "/" << NUM_GEN-1 <<" ======\n";
 			genfp << "Number of Species:  " << pop.size() << "\n";
 			genfp << "Number of Genomes: " << calcTotalPop(&pop) << std::endl;
+				
+			popsizefp << calcTotalPop(&pop) << ",";
+ 
 			genfp << "Population Avg. Fitness (pre-cull): " << pop_avg_fitness << endl;	
 			genfp << "Species Stats:\n";
 			for(int j = 0; j < (int)pop.size(); j++){
@@ -629,14 +637,15 @@ int main(int argc, char **argv){
 			
 			ngenomes = calcTotalPop(&pop);// record pre-reproduce pop size for rebalancing in Next Generation
 			/*reproduce (create new population from fittest of old pop)*/
-			reproduce(&pop, POP_SIZE, &nov);
+			reproduce(&pop, POP_SIZE, DIST_THRESHOLD, &nov);
 			cout << "[POST-CROSSOVER]Number of Genomes: " << calcTotalPop(&pop) << std::endl;
 			//std::cout <<"[MainLoop] called reproduce\n";
 			gen_count++;
 			auto stop_gen_b = std::chrono::high_resolution_clock::now(); //stop timing before eval
 			auto neat_duration_a = std::chrono::duration_cast<std::chrono::microseconds>(stop_gen_a - start_gen_a); 
 			auto neat_duration_b = std::chrono::duration_cast<std::chrono::microseconds>(stop_gen_b - start_gen_b);
-			neat_time_fp << g << "," << double((neat_duration_a.count() + neat_duration_b.count())) / 1000000 << ",\n";
+			neat_time_fp << g << "," << double((neat_duration_a.count() + neat_duration_b.count())) / 1000000 <<\
+				 "," << std::endl;
 		}
 		
 		//if we hit a fitness score we want, stop the program
@@ -655,6 +664,7 @@ int main(int argc, char **argv){
 	best_fitness_fp.close(); //best individual genome fitness/gen	
 	genfp.close();
 	hangtimefp.close();
+	popsizefp.close();
 	/*END OF MAIN LOOP: printing results to confirm code working*/
 	/*printing results...*/
 	if(myid == 0){
@@ -719,14 +729,14 @@ void  writeToFileRecv(ofstream *fp){
 				*fp << node_info_1d[count] << ","; //write to filei
 				count += 1;
 			}
-			*fp << "\n"; //at end of row print new line 
+			*fp << std::endl; //at end of row print new line 
 		}
 		else{
 			count += row_len; //skip this whole row if it has no inputs
 		}
 		
 	}
-	*fp << "END," << "\n"; //at end of genome print "END"
+	*fp << "END," << std::endl; //at end of genome print "END"
 
 }
 
@@ -934,7 +944,7 @@ void matchMaker(Species s, int* parents, double avg_fitness){
  * @brief calls all the functions related to reproduction for a given population 
  *
  * */
-void reproduce(std::vector <Species> *pop_ptr, const int MAX_POP, NOV *nov){
+void reproduce(std::vector <Species> *pop_ptr, const int MAX_POP, const int DIST_THRESHOLD, NOV *nov){
 	
 	//std::cout << "in reproduce()...\n";	
 
@@ -950,7 +960,7 @@ void reproduce(std::vector <Species> *pop_ptr, const int MAX_POP, NOV *nov){
 
 
 	/*HYPER PARAMETERS*/ //add these to a struct in a world_setting.h file later on
-	int dist_threshold = 2; //paper says 3
+	int dist_threshold = DIST_THRESHOLD; //paper says 3
 	
 
 

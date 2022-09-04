@@ -1,520 +1,859 @@
-====== [pre-crossover] Generation 0/79 ======
+====== [pre-crossover] Generation 0/49 ======
 Number of Species:  1
-Number of Genomes: 30
+Number of Genomes: 150
+Population Avg. Fitness (pre-cull): 9.34
+Species Stats:
+       Species 1: size: 150, avg Fit: 9.34
+====== [pre-crossover] Generation 1/49 ======
+Number of Species:  5
+Number of Genomes: 151
+Population Avg. Fitness (pre-cull): 9.37748
+Species Stats:
+       Species 1: size: 146, avg Fit: 9.37671
+       Species 1_1: size: 1, avg Fit: 10
+       Species 1_2: size: 1, avg Fit: 11
+       Species 1_3: size: 1, avg Fit: 8
+       Species 1_4: size: 2, avg Fit: 9
+====== [pre-crossover] Generation 2/49 ======
+Number of Species:  6
+Number of Genomes: 131
+Population Avg. Fitness (pre-cull): 9.30534
+Species Stats:
+       Species 1: size: 1, avg Fit: 9
+       Species 1_1: size: 33, avg Fit: 9.30303
+       Species 1_2: size: 36, avg Fit: 9.33333
+       Species 1_3: size: 1, avg Fit: 10
+       Species 1_4: size: 30, avg Fit: 9.2
+       Species 1_5: size: 30, avg Fit: 9.36667
+====== [pre-crossover] Generation 3/49 ======
+Number of Species:  6
+Number of Genomes: 133
+Population Avg. Fitness (pre-cull): 9.2782
+Species Stats:
+       Species 1: size: 1, avg Fit: 9
+       Species 1_1: size: 26, avg Fit: 9.34615
+       Species 1_2: size: 26, avg Fit: 9
+       Species 1_3: size: 28, avg Fit: 9.32143
+       Species 1_4: size: 26, avg Fit: 9.42308
+       Species 1_5: size: 26, avg Fit: 9.30769
+====== [pre-crossover] Generation 4/49 ======
+Number of Species:  13
+Number of Genomes: 135
 Population Avg. Fitness (pre-cull): 9.33333
 Species Stats:
-       Species 1: size: 30, avg Fit: 9.33333
-====== [pre-crossover] Generation 1/79 ======
-Number of Species:  1
-Number of Genomes: 31
-Population Avg. Fitness (pre-cull): 9.54839
+       Species 1: size: 1, avg Fit: 8
+       Species 1_1: size: 26, avg Fit: 9.57692
+       Species 1_2: size: 25, avg Fit: 9.4
+       Species 1_3: size: 25, avg Fit: 9
+       Species 1_4: size: 23, avg Fit: 9.52174
+       Species 1_5: size: 27, avg Fit: 9.2963
+       Species 1_1_1: size: 1, avg Fit: 9
+       Species 1_2_1: size: 1, avg Fit: 8
+       Species 1_3_1: size: 1, avg Fit: 9
+       Species 1_3_2: size: 1, avg Fit: 9
+       Species 1_4_1: size: 2, avg Fit: 9.5
+       Species 1_4_2: size: 1, avg Fit: 10
+       Species 1_4_3: size: 1, avg Fit: 9
+====== [pre-crossover] Generation 5/49 ======
+Number of Species:  16
+Number of Genomes: 101
+Population Avg. Fitness (pre-cull): 9.35644
 Species Stats:
-       Species 1: size: 31, avg Fit: 9.54839
-====== [pre-crossover] Generation 2/79 ======
-Number of Species:  1
-Number of Genomes: 31
-Population Avg. Fitness (pre-cull): 9.41935
-Species Stats:
-       Species 1: size: 31, avg Fit: 9.41935
-====== [pre-crossover] Generation 3/79 ======
-Number of Species:  1
-Number of Genomes: 31
-Population Avg. Fitness (pre-cull): 9.29032
-Species Stats:
-       Species 1: size: 31, avg Fit: 9.29032
-====== [pre-crossover] Generation 4/79 ======
-Number of Species:  1
-Number of Genomes: 31
-Population Avg. Fitness (pre-cull): 9.25806
-Species Stats:
-       Species 1: size: 31, avg Fit: 9.25806
-====== [pre-crossover] Generation 5/79 ======
-Number of Species:  1
-Number of Genomes: 31
-Population Avg. Fitness (pre-cull): 9.51613
-Species Stats:
-       Species 1: size: 31, avg Fit: 9.51613
-====== [pre-crossover] Generation 6/79 ======
-Number of Species:  1
-Number of Genomes: 31
-Population Avg. Fitness (pre-cull): 9.22581
-Species Stats:
-       Species 1: size: 31, avg Fit: 9.22581
-====== [pre-crossover] Generation 7/79 ======
-Number of Species:  1
-Number of Genomes: 31
-Population Avg. Fitness (pre-cull): 9.19355
-Species Stats:
-       Species 1: size: 31, avg Fit: 9.19355
-====== [pre-crossover] Generation 8/79 ======
-Number of Species:  1
-Number of Genomes: 31
-Population Avg. Fitness (pre-cull): 9.48387
-Species Stats:
-       Species 1: size: 31, avg Fit: 9.48387
-====== [pre-crossover] Generation 9/79 ======
-Number of Species:  1
-Number of Genomes: 31
-Population Avg. Fitness (pre-cull): 9.19355
-Species Stats:
-       Species 1: size: 31, avg Fit: 9.19355
-====== [pre-crossover] Generation 10/79 ======
-Number of Species:  1
-Number of Genomes: 31
-Population Avg. Fitness (pre-cull): 9.35484
-Species Stats:
-       Species 1: size: 31, avg Fit: 9.35484
-====== [pre-crossover] Generation 11/79 ======
-Number of Species:  1
-Number of Genomes: 31
-Population Avg. Fitness (pre-cull): 9.45161
-Species Stats:
-       Species 1: size: 31, avg Fit: 9.45161
-====== [pre-crossover] Generation 12/79 ======
-Number of Species:  1
-Number of Genomes: 31
-Population Avg. Fitness (pre-cull): 9.3871
-Species Stats:
-       Species 1: size: 31, avg Fit: 9.3871
-====== [pre-crossover] Generation 13/79 ======
-Number of Species:  1
-Number of Genomes: 31
-Population Avg. Fitness (pre-cull): 9.29032
-Species Stats:
-       Species 1: size: 31, avg Fit: 9.29032
-====== [pre-crossover] Generation 14/79 ======
-Number of Species:  1
-Number of Genomes: 31
-Population Avg. Fitness (pre-cull): 9.54839
-Species Stats:
-       Species 1: size: 31, avg Fit: 9.54839
-====== [pre-crossover] Generation 15/79 ======
-Number of Species:  1
-Number of Genomes: 31
-Population Avg. Fitness (pre-cull): 9.48387
-Species Stats:
-       Species 1: size: 31, avg Fit: 9.48387
-====== [pre-crossover] Generation 16/79 ======
-Number of Species:  1
-Number of Genomes: 31
-Population Avg. Fitness (pre-cull): 9.22581
-Species Stats:
-       Species 1: size: 31, avg Fit: 9.22581
-====== [pre-crossover] Generation 17/79 ======
-Number of Species:  1
-Number of Genomes: 31
-Population Avg. Fitness (pre-cull): 9.6129
-Species Stats:
-       Species 1: size: 31, avg Fit: 9.6129
-====== [pre-crossover] Generation 18/79 ======
-Number of Species:  1
-Number of Genomes: 31
-Population Avg. Fitness (pre-cull): 9.48387
-Species Stats:
-       Species 1: size: 31, avg Fit: 9.48387
-====== [pre-crossover] Generation 19/79 ======
-Number of Species:  1
-Number of Genomes: 31
-Population Avg. Fitness (pre-cull): 9.48387
-Species Stats:
-       Species 1: size: 31, avg Fit: 9.48387
-====== [pre-crossover] Generation 20/79 ======
-Number of Species:  1
-Number of Genomes: 31
-Population Avg. Fitness (pre-cull): 9.45161
-Species Stats:
-       Species 1: size: 31, avg Fit: 9.45161
-====== [pre-crossover] Generation 21/79 ======
-Number of Species:  1
-Number of Genomes: 31
-Population Avg. Fitness (pre-cull): 9.3871
-Species Stats:
-       Species 1: size: 31, avg Fit: 9.3871
-====== [pre-crossover] Generation 22/79 ======
-Number of Species:  1
-Number of Genomes: 31
-Population Avg. Fitness (pre-cull): 9.29032
-Species Stats:
-       Species 1: size: 31, avg Fit: 9.29032
-====== [pre-crossover] Generation 23/79 ======
-Number of Species:  1
-Number of Genomes: 31
-Population Avg. Fitness (pre-cull): 9.19355
-Species Stats:
-       Species 1: size: 31, avg Fit: 9.19355
-====== [pre-crossover] Generation 24/79 ======
-Number of Species:  1
-Number of Genomes: 31
-Population Avg. Fitness (pre-cull): 9.3871
-Species Stats:
-       Species 1: size: 31, avg Fit: 9.3871
-====== [pre-crossover] Generation 25/79 ======
-Number of Species:  1
-Number of Genomes: 31
-Population Avg. Fitness (pre-cull): 9.54839
-Species Stats:
-       Species 1: size: 31, avg Fit: 9.54839
-====== [pre-crossover] Generation 26/79 ======
-Number of Species:  1
-Number of Genomes: 31
-Population Avg. Fitness (pre-cull): 9.48387
-Species Stats:
-       Species 1: size: 31, avg Fit: 9.48387
-====== [pre-crossover] Generation 27/79 ======
-Number of Species:  2
-Number of Genomes: 31
-Population Avg. Fitness (pre-cull): 9.32258
-Species Stats:
-       Species 1: size: 15, avg Fit: 9.4
-       Species 1_1: size: 16, avg Fit: 9.25
-====== [pre-crossover] Generation 28/79 ======
-Number of Species:  2
-Number of Genomes: 33
-Population Avg. Fitness (pre-cull): 9.12121
-Species Stats:
-       Species 1: size: 30, avg Fit: 9.16667
-       Species 1_1: size: 3, avg Fit: 8.66667
-====== [pre-crossover] Generation 29/79 ======
-Number of Species:  3
-Number of Genomes: 33
-Population Avg. Fitness (pre-cull): 9.18182
-Species Stats:
-       Species 1: size: 30, avg Fit: 9.2
-       Species 1_1: size: 1, avg Fit: 9
-       Species 1_2: size: 2, avg Fit: 9
-====== [pre-crossover] Generation 30/79 ======
-Number of Species:  3
-Number of Genomes: 24
-Population Avg. Fitness (pre-cull): 9.54167
-Species Stats:
-       Species 1: size: 15, avg Fit: 9.73333
-       Species 1_1: size: 1, avg Fit: 10
-       Species 1_2: size: 8, avg Fit: 9.125
-====== [pre-crossover] Generation 31/79 ======
-Number of Species:  3
-Number of Genomes: 35
-Population Avg. Fitness (pre-cull): 9.4
-Species Stats:
-       Species 1: size: 23, avg Fit: 9.30435
-       Species 1_1: size: 1, avg Fit: 9
-       Species 1_2: size: 11, avg Fit: 9.63636
-====== [pre-crossover] Generation 32/79 ======
-Number of Species:  3
-Number of Genomes: 24
-Population Avg. Fitness (pre-cull): 9.5
-Species Stats:
-       Species 1: size: 10, avg Fit: 9.4
-       Species 1_1: size: 2, avg Fit: 9
-       Species 1_2: size: 12, avg Fit: 9.66667
-====== [pre-crossover] Generation 33/79 ======
-Number of Species:  3
-Number of Genomes: 35
-Population Avg. Fitness (pre-cull): 9.31429
-Species Stats:
-       Species 1: size: 18, avg Fit: 9.44444
-       Species 1_1: size: 5, avg Fit: 9.2
-       Species 1_2: size: 12, avg Fit: 9.16667
-====== [pre-crossover] Generation 34/79 ======
-Number of Species:  4
-Number of Genomes: 34
-Population Avg. Fitness (pre-cull): 9.67647
-Species Stats:
-       Species 1: size: 18, avg Fit: 9.72222
-       Species 1_1: size: 4, avg Fit: 9.75
-       Species 1_2: size: 11, avg Fit: 9.63636
-       Species 1_3: size: 1, avg Fit: 9
-====== [pre-crossover] Generation 35/79 ======
-Number of Species:  5
-Number of Genomes: 28
-Population Avg. Fitness (pre-cull): 10.3571
-Species Stats:
-       Species 1: size: 8, avg Fit: 9.5
-       Species 1_1: size: 7, avg Fit: 10.8571
-       Species 1_2: size: 7, avg Fit: 9.57143
-       Species 1_3: size: 4, avg Fit: 11.5
-       Species 1_2_1: size: 2, avg Fit: 12.5
-====== [pre-crossover] Generation 36/79 ======
-Number of Species:  5
-Number of Genomes: 38
-Population Avg. Fitness (pre-cull): 11.0263
-Species Stats:
-       Species 1: size: 7, avg Fit: 9.71429
-       Species 1_1: size: 8, avg Fit: 10.25
-       Species 1_2: size: 11, avg Fit: 10.8182
-       Species 1_3: size: 8, avg Fit: 11
-       Species 1_2_1: size: 4, avg Fit: 15.5
-====== [pre-crossover] Generation 37/79 ======
-Number of Species:  5
-Number of Genomes: 38
-Population Avg. Fitness (pre-cull): 12.1579
-Species Stats:
-       Species 1: size: 8, avg Fit: 9.75
-       Species 1_1: size: 14, avg Fit: 11.1429
-       Species 1_2: size: 13, avg Fit: 15.3846
-       Species 1_3: size: 1, avg Fit: 11
-       Species 1_2_1: size: 2, avg Fit: 8.5
-====== [pre-crossover] Generation 38/79 ======
-Number of Species:  5
-Number of Genomes: 31
-Population Avg. Fitness (pre-cull): 13.129
-Species Stats:
-       Species 1: size: 7, avg Fit: 9.42857
-       Species 1_1: size: 7, avg Fit: 9.85714
-       Species 1_2: size: 13, avg Fit: 17.3846
-       Species 1_3: size: 1, avg Fit: 13
-       Species 1_2_1: size: 3, avg Fit: 11
-====== [pre-crossover] Generation 39/79 ======
-Number of Species:  5
-Number of Genomes: 30
-Population Avg. Fitness (pre-cull): 14.8667
-Species Stats:
-       Species 1: size: 8, avg Fit: 9.5
-       Species 1_1: size: 4, avg Fit: 13.5
-       Species 1_2: size: 13, avg Fit: 20.1538
-       Species 1_3: size: 1, avg Fit: 14
-       Species 1_2_1: size: 4, avg Fit: 10
-====== [pre-crossover] Generation 40/79 ======
-Number of Species:  5
-Number of Genomes: 32
-Population Avg. Fitness (pre-cull): 18.4688
-Species Stats:
-       Species 1: size: 6, avg Fit: 9.83333
-       Species 1_1: size: 8, avg Fit: 14.25
-       Species 1_2: size: 13, avg Fit: 27.9231
-       Species 1_3: size: 1, avg Fit: 15
-       Species 1_2_1: size: 4, avg Fit: 10
-====== [pre-crossover] Generation 41/79 ======
-Number of Species:  5
-Number of Genomes: 30
-Population Avg. Fitness (pre-cull): 22.0333
-Species Stats:
-       Species 1: size: 5, avg Fit: 10
-       Species 1_1: size: 7, avg Fit: 15.7143
-       Species 1_2: size: 12, avg Fit: 36.4167
-       Species 1_3: size: 1, avg Fit: 14
-       Species 1_2_1: size: 5, avg Fit: 10
-====== [pre-crossover] Generation 42/79 ======
-Number of Species:  5
-Number of Genomes: 32
-Population Avg. Fitness (pre-cull): 29.8438
-Species Stats:
-       Species 1: size: 5, avg Fit: 10.2
-       Species 1_1: size: 7, avg Fit: 15.5714
-       Species 1_2: size: 14, avg Fit: 52.4286
-       Species 1_3: size: 1, avg Fit: 14
-       Species 1_2_1: size: 5, avg Fit: 9.4
-====== [pre-crossover] Generation 43/79 ======
-Number of Species:  5
-Number of Genomes: 33
-Population Avg. Fitness (pre-cull): 47.0606
-Species Stats:
-       Species 1: size: 5, avg Fit: 11.4
-       Species 1_1: size: 6, avg Fit: 21.5
-       Species 1_2: size: 17, avg Fit: 77.2353
-       Species 1_3: size: 1, avg Fit: 18
-       Species 1_2_1: size: 4, avg Fit: 9
-====== [pre-crossover] Generation 44/79 ======
-Number of Species:  6
-Number of Genomes: 32
-Population Avg. Fitness (pre-cull): 60.5
-Species Stats:
-       Species 1: size: 4, avg Fit: 12.25
-       Species 1_1: size: 6, avg Fit: 18.5
-       Species 1_2: size: 16, avg Fit: 90.625
-       Species 1_3: size: 1, avg Fit: 17
-       Species 1_2_1: size: 3, avg Fit: 10.6667
-       Species 1_2_2: size: 2, avg Fit: 138.5
-====== [pre-crossover] Generation 45/79 ======
-Number of Species:  7
-Number of Genomes: 37
-Population Avg. Fitness (pre-cull): 85.1081
-Species Stats:
-       Species 1: size: 3, avg Fit: 12.6667
-       Species 1_1: size: 3, avg Fit: 23
-       Species 1_2: size: 8, avg Fit: 118
-       Species 1_3: size: 1, avg Fit: 15
-       Species 1_2_1: size: 3, avg Fit: 12
-       Species 1_2_2: size: 17, avg Fit: 108.647
-       Species 1_2_3: size: 2, avg Fit: 100
-====== [pre-crossover] Generation 46/79 ======
-Number of Species:  7
-Number of Genomes: 38
-Population Avg. Fitness (pre-cull): 101.737
-Species Stats:
-       Species 1: size: 2, avg Fit: 17.5
-       Species 1_1: size: 3, avg Fit: 27
-       Species 1_2: size: 19, avg Fit: 126.842
-       Species 1_3: size: 1, avg Fit: 20
-       Species 1_2_1: size: 2, avg Fit: 17.5
-       Species 1_2_2: size: 10, avg Fit: 114.4
-       Species 1_2_3: size: 1, avg Fit: 141
-====== [pre-crossover] Generation 47/79 ======
-Number of Species:  8
-Number of Genomes: 40
-Population Avg. Fitness (pre-cull): 106.575
-Species Stats:
-       Species 1: size: 3, avg Fit: 13.6667
-       Species 1_1: size: 3, avg Fit: 24.3333
-       Species 1_2: size: 20, avg Fit: 140.65
-       Species 1_3: size: 1, avg Fit: 18
+       Species 1: size: 1, avg Fit: 10
+       Species 1_1: size: 14, avg Fit: 9.14286
+       Species 1_2: size: 1, avg Fit: 9
+       Species 1_3: size: 13, avg Fit: 9.30769
+       Species 1_4: size: 1, avg Fit: 9
+       Species 1_5: size: 13, avg Fit: 9.38462
+       Species 1_1_1: size: 1, avg Fit: 10
        Species 1_2_1: size: 1, avg Fit: 10
-       Species 1_2_2: size: 9, avg Fit: 128.444
-       Species 1_2_3: size: 1, avg Fit: 134
-       Species 1_2_1_1: size: 2, avg Fit: 9
-====== [pre-crossover] Generation 48/79 ======
-Number of Species:  8
-Number of Genomes: 39
-Population Avg. Fitness (pre-cull): 109.974
+       Species 1_3_1: size: 1, avg Fit: 11
+       Species 1_3_2: size: 1, avg Fit: 10
+       Species 1_4_1: size: 14, avg Fit: 9.42857
+       Species 1_4_2: size: 14, avg Fit: 9.14286
+       Species 1_4_3: size: 1, avg Fit: 8
+       Species 1_2_2: size: 11, avg Fit: 9.54545
+       Species 1_2_3: size: 1, avg Fit: 10
+       Species 1_4_4: size: 13, avg Fit: 9.38462
+====== [pre-crossover] Generation 6/49 ======
+Number of Species:  20
+Number of Genomes: 147
+Population Avg. Fitness (pre-cull): 9.33333
 Species Stats:
-       Species 1: size: 2, avg Fit: 14.5
-       Species 1_1: size: 3, avg Fit: 21.3333
-       Species 1_2: size: 18, avg Fit: 147.333
-       Species 1_3: size: 1, avg Fit: 18
-       Species 1_2_1: size: 1, avg Fit: 9
-       Species 1_2_2: size: 10, avg Fit: 131.3
-       Species 1_2_3: size: 2, avg Fit: 92
-       Species 1_2_1_1: size: 2, avg Fit: 10
-====== [pre-crossover] Generation 49/79 ======
-Number of Species:  9
-Number of Genomes: 38
-Population Avg. Fitness (pre-cull): 109.842
+       Species 1: size: 1, avg Fit: 8
+       Species 1_1: size: 5, avg Fit: 9.6
+       Species 1_2: size: 1, avg Fit: 9
+       Species 1_3: size: 11, avg Fit: 9.45455
+       Species 1_4: size: 1, avg Fit: 10
+       Species 1_5: size: 17, avg Fit: 9.58824
+       Species 1_1_1: size: 11, avg Fit: 8.81818
+       Species 1_2_1: size: 11, avg Fit: 9.27273
+       Species 1_3_1: size: 12, avg Fit: 9.25
+       Species 1_3_2: size: 11, avg Fit: 9.45455
+       Species 1_4_1: size: 10, avg Fit: 9.5
+       Species 1_4_2: size: 11, avg Fit: 9.36364
+       Species 1_4_3: size: 1, avg Fit: 9
+       Species 1_2_2: size: 11, avg Fit: 9.18182
+       Species 1_2_3: size: 11, avg Fit: 9.36364
+       Species 1_4_4: size: 8, avg Fit: 9.25
+       Species 1_1_2: size: 6, avg Fit: 9.5
+       Species 1_5_1: size: 4, avg Fit: 9.5
+       Species 1_4_1_1: size: 1, avg Fit: 9
+       Species 1_4_4_1: size: 3, avg Fit: 9
+====== [pre-crossover] Generation 7/49 ======
+Number of Species:  19
+Number of Genomes: 139
+Population Avg. Fitness (pre-cull): 9.26619
 Species Stats:
-       Species 1: size: 2, avg Fit: 14
-       Species 1_1: size: 3, avg Fit: 29.6667
-       Species 1_2: size: 13, avg Fit: 124.538
-       Species 1_3: size: 1, avg Fit: 25
-       Species 1_2_1: size: 1, avg Fit: 9
-       Species 1_2_2: size: 10, avg Fit: 152.7
-       Species 1_2_3: size: 1, avg Fit: 34
-       Species 1_2_1_1: size: 2, avg Fit: 8
-       Species 1_2_4: size: 5, avg Fit: 165.4
-====== [pre-crossover] Generation 50/79 ======
-Number of Species:  9
-Number of Genomes: 38
-Population Avg. Fitness (pre-cull): 119.421
+       Species 1: size: 1, avg Fit: 9
+       Species 1_3: size: 9, avg Fit: 9.66667
+       Species 1_4: size: 1, avg Fit: 10
+       Species 1_5: size: 9, avg Fit: 9.11111
+       Species 1_1_1: size: 9, avg Fit: 9.22222
+       Species 1_2_1: size: 8, avg Fit: 9.625
+       Species 1_3_1: size: 9, avg Fit: 9.22222
+       Species 1_3_2: size: 9, avg Fit: 9.11111
+       Species 1_4_1: size: 9, avg Fit: 9.33333
+       Species 1_4_2: size: 9, avg Fit: 9.66667
+       Species 1_4_3: size: 1, avg Fit: 8
+       Species 1_2_2: size: 9, avg Fit: 9.33333
+       Species 1_2_3: size: 9, avg Fit: 9.22222
+       Species 1_4_4: size: 18, avg Fit: 9.11111
+       Species 1_1_2: size: 9, avg Fit: 9.22222
+       Species 1_5_1: size: 9, avg Fit: 9.11111
+       Species 1_4_1_1: size: 1, avg Fit: 10
+       Species 1_4_4_1: size: 9, avg Fit: 9
+       Species 1_3_2_1: size: 1, avg Fit: 9
+====== [pre-crossover] Generation 8/49 ======
+Number of Species:  18
+Number of Genomes: 142
+Population Avg. Fitness (pre-cull): 9.49296
 Species Stats:
-       Species 1: size: 2, avg Fit: 20.5
-       Species 1_1: size: 3, avg Fit: 28.3333
-       Species 1_2: size: 14, avg Fit: 164.643
-       Species 1_3: size: 1, avg Fit: 26
-       Species 1_2_1: size: 1, avg Fit: 9
-       Species 1_2_2: size: 10, avg Fit: 152.7
-       Species 1_2_3: size: 4, avg Fit: 86
-       Species 1_2_1_1: size: 2, avg Fit: 18
-       Species 1_2_4: size: 1, avg Fit: 165
-====== [pre-crossover] Generation 51/79 ======
-Number of Species:  9
-Number of Genomes: 40
-Population Avg. Fitness (pre-cull): 119.725
+       Species 1: size: 1, avg Fit: 10
+       Species 1_4: size: 1, avg Fit: 9
+       Species 1_5: size: 9, avg Fit: 9.88889
+       Species 1_1_1: size: 9, avg Fit: 9.33333
+       Species 1_2_1: size: 10, avg Fit: 9.5
+       Species 1_3_1: size: 9, avg Fit: 9.66667
+       Species 1_3_2: size: 9, avg Fit: 9.33333
+       Species 1_4_1: size: 9, avg Fit: 9.11111
+       Species 1_4_2: size: 10, avg Fit: 9.4
+       Species 1_4_3: size: 1, avg Fit: 9
+       Species 1_2_2: size: 9, avg Fit: 9.55556
+       Species 1_2_3: size: 9, avg Fit: 9.55556
+       Species 1_4_4: size: 18, avg Fit: 9.5
+       Species 1_1_2: size: 9, avg Fit: 9.33333
+       Species 1_5_1: size: 9, avg Fit: 9.44444
+       Species 1_4_1_1: size: 10, avg Fit: 9.5
+       Species 1_4_4_1: size: 9, avg Fit: 9.77778
+       Species 1_3_2_1: size: 1, avg Fit: 10
+====== [pre-crossover] Generation 9/49 ======
+Number of Species:  24
+Number of Genomes: 161
+Population Avg. Fitness (pre-cull): 9.43478
 Species Stats:
-       Species 1: size: 2, avg Fit: 26
-       Species 1_1: size: 3, avg Fit: 17
-       Species 1_2: size: 17, avg Fit: 157.118
-       Species 1_3: size: 1, avg Fit: 24
-       Species 1_2_1: size: 2, avg Fit: 10
-       Species 1_2_2: size: 8, avg Fit: 166
-       Species 1_2_3: size: 5, avg Fit: 95.2
-       Species 1_2_1_1: size: 1, avg Fit: 27
-       Species 1_2_4: size: 1, avg Fit: 140
-====== [pre-crossover] Generation 52/79 ======
-Number of Species:  7
-Number of Genomes: 33
-Population Avg. Fitness (pre-cull): 153.152
+       Species 1: size: 1, avg Fit: 8
+       Species 1_4: size: 1, avg Fit: 11
+       Species 1_5: size: 1, avg Fit: 10
+       Species 1_1_1: size: 10, avg Fit: 9.6
+       Species 1_2_1: size: 19, avg Fit: 9.36842
+       Species 1_3_1: size: 10, avg Fit: 9.4
+       Species 1_3_2: size: 1, avg Fit: 9
+       Species 1_4_1: size: 2, avg Fit: 10
+       Species 1_4_2: size: 10, avg Fit: 9.4
+       Species 1_4_3: size: 1, avg Fit: 9
+       Species 1_2_2: size: 10, avg Fit: 9.3
+       Species 1_2_3: size: 10, avg Fit: 9.3
+       Species 1_4_4: size: 10, avg Fit: 9.8
+       Species 1_1_2: size: 10, avg Fit: 9.2
+       Species 1_5_1: size: 10, avg Fit: 9.3
+       Species 1_4_1_1: size: 10, avg Fit: 9.4
+       Species 1_4_4_1: size: 10, avg Fit: 9.3
+       Species 1_3_2_1: size: 1, avg Fit: 10
+       Species 1_6: size: 9, avg Fit: 9.44444
+       Species 1_5_2: size: 5, avg Fit: 10
+       Species 1_5_3: size: 4, avg Fit: 9
+       Species 1_3_2_2: size: 8, avg Fit: 9.625
+       Species 1_3_2_3: size: 1, avg Fit: 9
+       Species 1_4_1_2: size: 7, avg Fit: 9.57143
+====== [pre-crossover] Generation 10/49 ======
+Number of Species:  24
+Number of Genomes: 156
+Population Avg. Fitness (pre-cull): 9.39744
 Species Stats:
-       Species 1: size: 3, avg Fit: 16
-       Species 1_1: size: 2, avg Fit: 23.5
-       Species 1_2: size: 16, avg Fit: 196.625
-       Species 1_3: size: 1, avg Fit: 31
-       Species 1_2_2: size: 9, avg Fit: 164.111
-       Species 1_2_1_1: size: 1, avg Fit: 96
-       Species 1_2_4: size: 1, avg Fit: 209
-====== [pre-crossover] Generation 53/79 ======
-Number of Species:  8
-Number of Genomes: 34
-Population Avg. Fitness (pre-cull): 150.559
+       Species 1: size: 1, avg Fit: 9
+       Species 1_4: size: 1, avg Fit: 9
+       Species 1_5: size: 1, avg Fit: 10
+       Species 1_1_1: size: 8, avg Fit: 9.125
+       Species 1_2_1: size: 15, avg Fit: 9.46667
+       Species 1_3_1: size: 4, avg Fit: 9.75
+       Species 1_3_2: size: 1, avg Fit: 8
+       Species 1_4_1: size: 8, avg Fit: 9.625
+       Species 1_4_3: size: 1, avg Fit: 9
+       Species 1_2_2: size: 8, avg Fit: 9.5
+       Species 1_2_3: size: 8, avg Fit: 9.125
+       Species 1_4_4: size: 16, avg Fit: 9.5
+       Species 1_1_2: size: 8, avg Fit: 9.375
+       Species 1_5_1: size: 8, avg Fit: 9.125
+       Species 1_4_1_1: size: 8, avg Fit: 9
+       Species 1_4_4_1: size: 8, avg Fit: 9.25
+       Species 1_3_2_1: size: 1, avg Fit: 10
+       Species 1_6: size: 8, avg Fit: 9.125
+       Species 1_5_2: size: 15, avg Fit: 9.46667
+       Species 1_5_3: size: 7, avg Fit: 9.57143
+       Species 1_3_2_2: size: 8, avg Fit: 9.875
+       Species 1_3_2_3: size: 1, avg Fit: 10
+       Species 1_4_1_2: size: 8, avg Fit: 9.375
+       Species 1_3_1_1: size: 4, avg Fit: 9.75
+====== [pre-crossover] Generation 11/49 ======
+Number of Species:  20
+Number of Genomes: 130
+Population Avg. Fitness (pre-cull): 9.36154
 Species Stats:
-       Species 1: size: 2, avg Fit: 16.5
-       Species 1_1: size: 1, avg Fit: 28
-       Species 1_2: size: 19, avg Fit: 181.737
-       Species 1_3: size: 1, avg Fit: 46
-       Species 1_2_2: size: 8, avg Fit: 165.125
-       Species 1_2_1_1: size: 1, avg Fit: 42
-       Species 1_2_4: size: 1, avg Fit: 149
-       Species 1_1_1: size: 1, avg Fit: 47
-====== [pre-crossover] Generation 54/79 ======
-Number of Species:  8
-Number of Genomes: 26
-Population Avg. Fitness (pre-cull): 128.231
+       Species 1: size: 1, avg Fit: 9
+       Species 1_4: size: 1, avg Fit: 10
+       Species 1_5: size: 1, avg Fit: 10
+       Species 1_4_1: size: 15, avg Fit: 9.86667
+       Species 1_4_3: size: 1, avg Fit: 9
+       Species 1_2_2: size: 8, avg Fit: 9.875
+       Species 1_4_4: size: 8, avg Fit: 9.25
+       Species 1_1_2: size: 8, avg Fit: 9.5
+       Species 1_5_1: size: 3, avg Fit: 9.33333
+       Species 1_4_1_1: size: 7, avg Fit: 9
+       Species 1_4_4_1: size: 8, avg Fit: 9.125
+       Species 1_3_2_1: size: 8, avg Fit: 9
+       Species 1_6: size: 8, avg Fit: 9.375
+       Species 1_5_2: size: 15, avg Fit: 9.46667
+       Species 1_5_3: size: 8, avg Fit: 9.5
+       Species 1_3_2_2: size: 8, avg Fit: 9.25
+       Species 1_3_2_3: size: 8, avg Fit: 9.375
+       Species 1_4_1_2: size: 1, avg Fit: 8
+       Species 1_3_1_1: size: 8, avg Fit: 8.75
+       Species 1_5_2_1: size: 5, avg Fit: 9.2
+====== [pre-crossover] Generation 12/49 ======
+Number of Species:  20
+Number of Genomes: 149
+Population Avg. Fitness (pre-cull): 9.4094
 Species Stats:
-       Species 1: size: 2, avg Fit: 27
-       Species 1_1: size: 1, avg Fit: 21
-       Species 1_2: size: 10, avg Fit: 206
-       Species 1_3: size: 1, avg Fit: 48
-       Species 1_2_2: size: 9, avg Fit: 106
-       Species 1_2_1_1: size: 1, avg Fit: 12
-       Species 1_2_4: size: 1, avg Fit: 146
-       Species 1_1_1: size: 1, avg Fit: 39
-====== [pre-crossover] Generation 55/79 ======
-Number of Species:  7
-Number of Genomes: 34
-Population Avg. Fitness (pre-cull): 165.353
+       Species 1: size: 1, avg Fit: 9
+       Species 1_4: size: 1, avg Fit: 9
+       Species 1_5: size: 1, avg Fit: 10
+       Species 1_4_1: size: 9, avg Fit: 9.22222
+       Species 1_4_3: size: 1, avg Fit: 10
+       Species 1_2_2: size: 9, avg Fit: 9.77778
+       Species 1_4_4: size: 17, avg Fit: 9.35294
+       Species 1_1_2: size: 9, avg Fit: 9.55556
+       Species 1_4_1_1: size: 9, avg Fit: 9.11111
+       Species 1_4_4_1: size: 9, avg Fit: 9.66667
+       Species 1_3_2_1: size: 9, avg Fit: 9.44444
+       Species 1_6: size: 9, avg Fit: 9.66667
+       Species 1_5_2: size: 18, avg Fit: 9.5
+       Species 1_5_3: size: 9, avg Fit: 8.77778
+       Species 1_3_2_2: size: 9, avg Fit: 9.33333
+       Species 1_3_2_3: size: 9, avg Fit: 9.44444
+       Species 1_4_1_2: size: 1, avg Fit: 10
+       Species 1_3_1_1: size: 9, avg Fit: 9.55556
+       Species 1_5_2_1: size: 9, avg Fit: 9.22222
+       Species 1_4_4_2: size: 1, avg Fit: 9
+====== [pre-crossover] Generation 13/49 ======
+Number of Species:  20
+Number of Genomes: 146
+Population Avg. Fitness (pre-cull): 9.54795
 Species Stats:
-       Species 1: size: 3, avg Fit: 18.3333
-       Species 1_2: size: 20, avg Fit: 212.95
-       Species 1_3: size: 1, avg Fit: 48
-       Species 1_2_2: size: 7, avg Fit: 145.143
-       Species 1_2_1_1: size: 1, avg Fit: 10
-       Species 1_2_4: size: 1, avg Fit: 168
-       Species 1_1_1: size: 1, avg Fit: 66
-====== [pre-crossover] Generation 56/79 ======
-Number of Species:  7
-Number of Genomes: 33
-Population Avg. Fitness (pre-cull): 209.394
+       Species 1: size: 1, avg Fit: 10
+       Species 1_4: size: 1, avg Fit: 9
+       Species 1_5: size: 1, avg Fit: 11
+       Species 1_4_1: size: 9, avg Fit: 9.22222
+       Species 1_4_3: size: 9, avg Fit: 9.66667
+       Species 1_2_2: size: 9, avg Fit: 10
+       Species 1_4_4: size: 8, avg Fit: 9.125
+       Species 1_1_2: size: 9, avg Fit: 9.77778
+       Species 1_4_4_1: size: 9, avg Fit: 9.77778
+       Species 1_3_2_1: size: 9, avg Fit: 9.55556
+       Species 1_6: size: 9, avg Fit: 9.77778
+       Species 1_5_2: size: 17, avg Fit: 9.23529
+       Species 1_5_3: size: 8, avg Fit: 9
+       Species 1_3_2_2: size: 9, avg Fit: 9.11111
+       Species 1_3_2_3: size: 9, avg Fit: 10
+       Species 1_4_1_2: size: 9, avg Fit: 9.55556
+       Species 1_3_1_1: size: 9, avg Fit: 9.66667
+       Species 1_5_2_1: size: 9, avg Fit: 9.66667
+       Species 1_4_4_2: size: 1, avg Fit: 9
+       Species 1_4_4_3: size: 1, avg Fit: 11
+====== [pre-crossover] Generation 14/49 ======
+Number of Species:  25
+Number of Genomes: 165
+Population Avg. Fitness (pre-cull): 9.40606
 Species Stats:
-       Species 1: size: 2, avg Fit: 22.5
-       Species 1_2: size: 7, avg Fit: 348
-       Species 1_3: size: 1, avg Fit: 71
-       Species 1_2_2: size: 8, avg Fit: 161.125
-       Species 1_2_1_1: size: 1, avg Fit: 23
-       Species 1_2_4: size: 13, avg Fit: 230.077
-       Species 1_1_1: size: 1, avg Fit: 55
-====== [pre-crossover] Generation 57/79 ======
-Number of Species:  7
-Number of Genomes: 34
-Population Avg. Fitness (pre-cull): 243.941
+       Species 1: size: 1, avg Fit: 10
+       Species 1_4: size: 1, avg Fit: 10
+       Species 1_5: size: 1, avg Fit: 9
+       Species 1_4_1: size: 9, avg Fit: 9
+       Species 1_4_3: size: 9, avg Fit: 8.66667
+       Species 1_2_2: size: 1, avg Fit: 9
+       Species 1_4_4: size: 5, avg Fit: 9.4
+       Species 1_1_2: size: 9, avg Fit: 9.33333
+       Species 1_4_4_1: size: 9, avg Fit: 9.22222
+       Species 1_3_2_1: size: 9, avg Fit: 9.11111
+       Species 1_6: size: 17, avg Fit: 9.70588
+       Species 1_5_2: size: 9, avg Fit: 9.22222
+       Species 1_5_3: size: 8, avg Fit: 9.25
+       Species 1_3_2_2: size: 8, avg Fit: 9.375
+       Species 1_3_2_3: size: 9, avg Fit: 10.1111
+       Species 1_4_1_2: size: 9, avg Fit: 8.66667
+       Species 1_3_1_1: size: 9, avg Fit: 9.11111
+       Species 1_5_2_1: size: 9, avg Fit: 9.11111
+       Species 1_4_4_2: size: 1, avg Fit: 10
+       Species 1_4_4_3: size: 10, avg Fit: 9.4
+       Species 1_5_4: size: 9, avg Fit: 9.33333
+       Species 1_2_2_1: size: 4, avg Fit: 13
+       Species 1_2_2_2: size: 4, avg Fit: 10.5
+       Species 1_4_4_4: size: 4, avg Fit: 9.5
+       Species 1_3_2_2_1: size: 1, avg Fit: 9
+====== [pre-crossover] Generation 15/49 ======
+Number of Species:  22
+Number of Genomes: 137
+Population Avg. Fitness (pre-cull): 9.69343
 Species Stats:
-       Species 1: size: 2, avg Fit: 36.5
-       Species 1_2: size: 15, avg Fit: 352.733
-       Species 1_3: size: 1, avg Fit: 51
-       Species 1_2_2: size: 7, avg Fit: 157.714
-       Species 1_2_1_1: size: 1, avg Fit: 21
-       Species 1_2_4: size: 7, avg Fit: 244
-       Species 1_1_1: size: 1, avg Fit: 46
-====== [pre-crossover] Generation 58/79 ======
-Number of Species:  7
-Number of Genomes: 36
-Population Avg. Fitness (pre-cull): 274.556
+       Species 1: size: 1, avg Fit: 10
+       Species 1_5: size: 1, avg Fit: 9
+       Species 1_4_3: size: 7, avg Fit: 9
+       Species 1_2_2: size: 1, avg Fit: 11
+       Species 1_1_2: size: 7, avg Fit: 9.28571
+       Species 1_4_4_1: size: 7, avg Fit: 9.14286
+       Species 1_3_2_1: size: 7, avg Fit: 9.57143
+       Species 1_6: size: 15, avg Fit: 9.86667
+       Species 1_5_3: size: 7, avg Fit: 10.1429
+       Species 1_3_2_2: size: 7, avg Fit: 9.14286
+       Species 1_3_2_3: size: 8, avg Fit: 9.75
+       Species 1_4_1_2: size: 7, avg Fit: 8.71429
+       Species 1_3_1_1: size: 7, avg Fit: 9.28571
+       Species 1_5_2_1: size: 5, avg Fit: 9.2
+       Species 1_4_4_2: size: 8, avg Fit: 9.375
+       Species 1_4_4_3: size: 7, avg Fit: 8.85714
+       Species 1_5_4: size: 7, avg Fit: 8.85714
+       Species 1_2_2_1: size: 10, avg Fit: 12.1
+       Species 1_2_2_2: size: 8, avg Fit: 12
+       Species 1_4_4_4: size: 7, avg Fit: 9.14286
+       Species 1_3_2_2_1: size: 1, avg Fit: 8
+       Species 1_2_2_1_1: size: 2, avg Fit: 9
+====== [pre-crossover] Generation 16/49 ======
+Number of Species:  24
+Number of Genomes: 146
+Population Avg. Fitness (pre-cull): 9.9863
 Species Stats:
-       Species 1: size: 3, avg Fit: 27.3333
-       Species 1_2: size: 13, avg Fit: 345.154
-       Species 1_3: size: 1, avg Fit: 41
-       Species 1_2_2: size: 7, avg Fit: 199.571
-       Species 1_2_1_1: size: 1, avg Fit: 8
-       Species 1_2_4: size: 10, avg Fit: 380.9
-       Species 1_1_1: size: 1, avg Fit: 60
-====== [pre-crossover] Generation 59/79 ======
-Number of Species:  7
-Number of Genomes: 35
-Population Avg. Fitness (pre-cull): 277.114
+       Species 1: size: 1, avg Fit: 9
+       Species 1_5: size: 1, avg Fit: 10
+       Species 1_4_3: size: 8, avg Fit: 9.5
+       Species 1_2_2: size: 1, avg Fit: 13
+       Species 1_1_2: size: 8, avg Fit: 9.25
+       Species 1_4_4_1: size: 8, avg Fit: 9.25
+       Species 1_6: size: 14, avg Fit: 9.5
+       Species 1_5_3: size: 8, avg Fit: 9.375
+       Species 1_3_2_3: size: 8, avg Fit: 9.5
+       Species 1_4_1_2: size: 8, avg Fit: 9.375
+       Species 1_5_2_1: size: 8, avg Fit: 9.125
+       Species 1_4_4_2: size: 8, avg Fit: 9
+       Species 1_4_4_3: size: 8, avg Fit: 9.75
+       Species 1_5_4: size: 2, avg Fit: 9.5
+       Species 1_2_2_1: size: 6, avg Fit: 12
+       Species 1_2_2_2: size: 10, avg Fit: 12.5
+       Species 1_4_4_4: size: 8, avg Fit: 9.375
+       Species 1_3_2_2_1: size: 1, avg Fit: 8
+       Species 1_2_2_1_1: size: 8, avg Fit: 9.5
+       Species 1_2_2_3: size: 8, avg Fit: 12.375
+       Species 1_5_3_1: size: 3, avg Fit: 10
+       Species 1_3_2_3_1: size: 1, avg Fit: 10
+       Species 1_4_4_4_1: size: 6, avg Fit: 9.83333
+       Species 1_3_2_2_1_1: size: 4, avg Fit: 11.75
+====== [pre-crossover] Generation 17/49 ======
+Number of Species:  28
+Number of Genomes: 172
+Population Avg. Fitness (pre-cull): 10.6047
 Species Stats:
-       Species 1: size: 2, avg Fit: 27.5
-       Species 1_2: size: 15, avg Fit: 355.867
-       Species 1_3: size: 1, avg Fit: 59
-       Species 1_2_2: size: 7, avg Fit: 136.286
-       Species 1_2_1_1: size: 1, avg Fit: 10
-       Species 1_2_4: size: 8, avg Fit: 395.75
-       Species 1_1_1: size: 1, avg Fit: 117
-====== [pre-crossover] Generation 60/79 ======
-Number of Species:  8
-Number of Genomes: 33
-Population Avg. Fitness (pre-cull): 256.03
+       Species 1: size: 1, avg Fit: 8
+       Species 1_5: size: 1, avg Fit: 9
+       Species 1_4_3: size: 7, avg Fit: 9.57143
+       Species 1_2_2: size: 1, avg Fit: 12
+       Species 1_1_2: size: 7, avg Fit: 9.42857
+       Species 1_4_4_1: size: 7, avg Fit: 9.28571
+       Species 1_6: size: 5, avg Fit: 9.4
+       Species 1_5_3: size: 7, avg Fit: 9.57143
+       Species 1_3_2_3: size: 7, avg Fit: 9.57143
+       Species 1_4_1_2: size: 7, avg Fit: 9
+       Species 1_5_2_1: size: 6, avg Fit: 9.16667
+       Species 1_4_4_2: size: 7, avg Fit: 9.14286
+       Species 1_4_4_3: size: 4, avg Fit: 8.75
+       Species 1_5_4: size: 1, avg Fit: 10
+       Species 1_2_2_1: size: 17, avg Fit: 13.2353
+       Species 1_2_2_2: size: 4, avg Fit: 16.25
+       Species 1_4_4_4: size: 7, avg Fit: 9.42857
+       Species 1_3_2_2_1: size: 1, avg Fit: 9
+       Species 1_2_2_1_1: size: 7, avg Fit: 9.71429
+       Species 1_2_2_3: size: 18, avg Fit: 13.6667
+       Species 1_5_3_1: size: 8, avg Fit: 10.125
+       Species 1_3_2_3_1: size: 8, avg Fit: 9.5
+       Species 1_4_4_4_1: size: 21, avg Fit: 9.52381
+       Species 1_3_2_2_1_1: size: 1, avg Fit: 15
+       Species 1_6_1: size: 2, avg Fit: 10.5
+       Species 1_5_2_1_1: size: 1, avg Fit: 10
+       Species 1_4_4_3_1: size: 4, avg Fit: 9
+       Species 1_2_2_2_1: size: 5, avg Fit: 14.2
+====== [pre-crossover] Generation 18/49 ======
+Number of Species:  31
+Number of Genomes: 151
+Population Avg. Fitness (pre-cull): 12.1656
+Species Stats:
+       Species 1: size: 1, avg Fit: 9
+       Species 1_5: size: 1, avg Fit: 9
+       Species 1_2_2: size: 1, avg Fit: 15
+       Species 1_1_2: size: 6, avg Fit: 9.33333
+       Species 1_4_4_1: size: 6, avg Fit: 9.5
+       Species 1_6: size: 6, avg Fit: 9.33333
+       Species 1_5_3: size: 6, avg Fit: 9.16667
+       Species 1_3_2_3: size: 6, avg Fit: 9.5
+       Species 1_5_2_1: size: 4, avg Fit: 9.5
+       Species 1_4_4_2: size: 6, avg Fit: 9.66667
+       Species 1_4_4_3: size: 6, avg Fit: 9.66667
+       Species 1_5_4: size: 1, avg Fit: 9
+       Species 1_2_2_1: size: 8, avg Fit: 14
+       Species 1_2_2_2: size: 1, avg Fit: 17
+       Species 1_4_4_4: size: 6, avg Fit: 9.33333
+       Species 1_3_2_2_1: size: 1, avg Fit: 9
+       Species 1_2_2_1_1: size: 7, avg Fit: 9.28571
+       Species 1_2_2_3: size: 16, avg Fit: 15.25
+       Species 1_5_3_1: size: 7, avg Fit: 10.1429
+       Species 1_3_2_3_1: size: 6, avg Fit: 9.33333
+       Species 1_4_4_4_1: size: 1, avg Fit: 10
+       Species 1_3_2_2_1_1: size: 1, avg Fit: 22
+       Species 1_6_1: size: 7, avg Fit: 11.5714
+       Species 1_5_2_1_1: size: 1, avg Fit: 8
+       Species 1_4_4_3_1: size: 6, avg Fit: 10
+       Species 1_2_2_2_1: size: 3, avg Fit: 15
+       Species 1_4_4_3_2: size: 2, avg Fit: 9
+       Species 1_3_2_2_1_2: size: 9, avg Fit: 22.2222
+       Species 1_6_1_1: size: 5, avg Fit: 9.2
+       Species 1_5_2_1_1_1: size: 8, avg Fit: 17.5
+       Species 1_3_2_2_1_2_1: size: 6, avg Fit: 16.6667
+====== [pre-crossover] Generation 19/49 ======
+Number of Species:  27
+Number of Genomes: 148
+Population Avg. Fitness (pre-cull): 16.5946
+Species Stats:
+       Species 1: size: 1, avg Fit: 11
+       Species 1_2_2: size: 1, avg Fit: 20
+       Species 1_6: size: 5, avg Fit: 9.4
+       Species 1_5_3: size: 5, avg Fit: 9.6
+       Species 1_3_2_3: size: 5, avg Fit: 9.6
+       Species 1_4_4_2: size: 6, avg Fit: 9.33333
+       Species 1_5_4: size: 1, avg Fit: 8
+       Species 1_2_2_1: size: 1, avg Fit: 20
+       Species 1_2_2_2: size: 9, avg Fit: 17.7778
+       Species 1_4_4_4: size: 5, avg Fit: 10
+       Species 1_3_2_2_1: size: 1, avg Fit: 10
+       Species 1_2_2_1_1: size: 5, avg Fit: 9.6
+       Species 1_2_2_3: size: 15, avg Fit: 26.6
+       Species 1_5_3_1: size: 6, avg Fit: 8.83333
+       Species 1_3_2_3_1: size: 5, avg Fit: 9.6
+       Species 1_4_4_4_1: size: 1, avg Fit: 9
+       Species 1_3_2_2_1_1: size: 3, avg Fit: 22.6667
+       Species 1_6_1: size: 6, avg Fit: 13.8333
+       Species 1_5_2_1_1: size: 1, avg Fit: 9
+       Species 1_4_4_3_1: size: 6, avg Fit: 9.5
+       Species 1_2_2_2_1: size: 8, avg Fit: 17.75
+       Species 1_4_4_3_2: size: 5, avg Fit: 9.6
+       Species 1_3_2_2_1_2: size: 11, avg Fit: 28.8182
+       Species 1_6_1_1: size: 5, avg Fit: 9.6
+       Species 1_5_2_1_1_1: size: 19, avg Fit: 23.4737
+       Species 1_3_2_2_1_2_1: size: 8, avg Fit: 18.75
+       Species 1_2_2_3_1: size: 4, avg Fit: 13.25
+====== [pre-crossover] Generation 20/49 ======
+Number of Species:  25
+Number of Genomes: 159
+Population Avg. Fitness (pre-cull): 22.0063
+Species Stats:
+       Species 1: size: 1, avg Fit: 10
+       Species 1_2_2: size: 1, avg Fit: 11
+       Species 1_6: size: 5, avg Fit: 9.2
+       Species 1_5_3: size: 5, avg Fit: 9.6
+       Species 1_5_4: size: 1, avg Fit: 9
+       Species 1_2_2_1: size: 1, avg Fit: 11
+       Species 1_2_2_2: size: 9, avg Fit: 18.1111
+       Species 1_4_4_4: size: 6, avg Fit: 9.33333
+       Species 1_3_2_2_1: size: 1, avg Fit: 9
+       Species 1_2_2_1_1: size: 5, avg Fit: 9.8
+       Species 1_2_2_3: size: 21, avg Fit: 35.4762
+       Species 1_5_3_1: size: 5, avg Fit: 9
+       Species 1_3_2_3_1: size: 5, avg Fit: 10.4
+       Species 1_4_4_4_1: size: 1, avg Fit: 8
+       Species 1_3_2_2_1_1: size: 10, avg Fit: 18.1
+       Species 1_6_1: size: 7, avg Fit: 17.5714
+       Species 1_5_2_1_1: size: 1, avg Fit: 10
+       Species 1_4_4_3_1: size: 5, avg Fit: 9.6
+       Species 1_2_2_2_1: size: 9, avg Fit: 20.6667
+       Species 1_4_4_3_2: size: 5, avg Fit: 9.8
+       Species 1_3_2_2_1_2: size: 13, avg Fit: 37.8462
+       Species 1_6_1_1: size: 5, avg Fit: 9.6
+       Species 1_5_2_1_1_1: size: 21, avg Fit: 36.7143
+       Species 1_3_2_2_1_2_1: size: 9, avg Fit: 25.6667
+       Species 1_2_2_3_1: size: 7, avg Fit: 14
+====== [pre-crossover] Generation 21/49 ======
+Number of Species:  23
+Number of Genomes: 146
+Population Avg. Fitness (pre-cull): 29.6096
+Species Stats:
+       Species 1: size: 1, avg Fit: 9
+       Species 1_2_2: size: 1, avg Fit: 9
+       Species 1_5_4: size: 1, avg Fit: 9
+       Species 1_2_2_1: size: 1, avg Fit: 9
+       Species 1_2_2_2: size: 9, avg Fit: 29.1111
+       Species 1_4_4_4: size: 5, avg Fit: 9.4
+       Species 1_3_2_2_1: size: 1, avg Fit: 9
+       Species 1_2_2_1_1: size: 5, avg Fit: 9.4
+       Species 1_2_2_3: size: 16, avg Fit: 62
+       Species 1_5_3_1: size: 5, avg Fit: 9.4
+       Species 1_3_2_3_1: size: 6, avg Fit: 11.3333
+       Species 1_4_4_4_1: size: 1, avg Fit: 10
+       Species 1_3_2_2_1_1: size: 9, avg Fit: 19.3333
+       Species 1_6_1: size: 8, avg Fit: 23
+       Species 1_5_2_1_1: size: 1, avg Fit: 9
+       Species 1_4_4_3_1: size: 5, avg Fit: 9.4
+       Species 1_2_2_2_1: size: 10, avg Fit: 27.2
+       Species 1_4_4_3_2: size: 5, avg Fit: 9.8
+       Species 1_3_2_2_1_2: size: 16, avg Fit: 54.1875
+       Species 1_6_1_1: size: 5, avg Fit: 9.6
+       Species 1_5_2_1_1_1: size: 16, avg Fit: 44.9375
+       Species 1_3_2_2_1_2_1: size: 12, avg Fit: 25.8333
+       Species 1_2_2_3_1: size: 7, avg Fit: 18
+====== [pre-crossover] Generation 22/49 ======
+Number of Species:  28
+Number of Genomes: 160
+Population Avg. Fitness (pre-cull): 42.3813
+Species Stats:
+       Species 1: size: 1, avg Fit: 9
+       Species 1_2_2: size: 1, avg Fit: 9
+       Species 1_5_4: size: 1, avg Fit: 11
+       Species 1_2_2_1: size: 1, avg Fit: 9
+       Species 1_2_2_2: size: 12, avg Fit: 51.25
+       Species 1_4_4_4: size: 5, avg Fit: 9.4
+       Species 1_3_2_2_1: size: 1, avg Fit: 10
+       Species 1_2_2_1_1: size: 5, avg Fit: 9.2
+       Species 1_2_2_3: size: 23, avg Fit: 77.6522
+       Species 1_5_3_1: size: 5, avg Fit: 9.2
+       Species 1_3_2_3_1: size: 2, avg Fit: 11.5
+       Species 1_4_4_4_1: size: 1, avg Fit: 10
+       Species 1_3_2_2_1_1: size: 8, avg Fit: 20.75
+       Species 1_6_1: size: 9, avg Fit: 28.1111
+       Species 1_5_2_1_1: size: 1, avg Fit: 10
+       Species 1_4_4_3_1: size: 5, avg Fit: 9.8
+       Species 1_2_2_2_1: size: 9, avg Fit: 33.5556
+       Species 1_4_4_3_2: size: 5, avg Fit: 10.4
+       Species 1_3_2_2_1_2: size: 15, avg Fit: 82.5333
+       Species 1_6_1_1: size: 5, avg Fit: 9.6
+       Species 1_5_2_1_1_1: size: 14, avg Fit: 69.1429
+       Species 1_3_2_2_1_2_1: size: 10, avg Fit: 33.2
+       Species 1_2_2_3_1: size: 8, avg Fit: 20.125
+       Species 1_3_2_3_1_1: size: 3, avg Fit: 8.33333
+       Species 1_2_2_2_1_1: size: 2, avg Fit: 23.5
+       Species 1_3_2_2_1_2_2: size: 3, avg Fit: 90
+       Species 1_3_2_2_1_2_3: size: 2, avg Fit: 79.5
+       Species 1_5_2_1_1_1_1: size: 3, avg Fit: 26.6667
+====== [pre-crossover] Generation 23/49 ======
+Number of Species:  30
+Number of Genomes: 173
+Population Avg. Fitness (pre-cull): 53.6185
+Species Stats:
+       Species 1: size: 1, avg Fit: 8
+       Species 1_2_2: size: 1, avg Fit: 8
+       Species 1_5_4: size: 1, avg Fit: 10
+       Species 1_2_2_1: size: 1, avg Fit: 9
+       Species 1_2_2_2: size: 11, avg Fit: 64.2727
+       Species 1_4_4_4: size: 3, avg Fit: 10
+       Species 1_3_2_2_1: size: 1, avg Fit: 10
+       Species 1_2_2_1_1: size: 3, avg Fit: 9.33333
+       Species 1_2_2_3: size: 16, avg Fit: 88.875
+       Species 1_5_3_1: size: 3, avg Fit: 10
+       Species 1_3_2_3_1: size: 4, avg Fit: 10.25
+       Species 1_4_4_4_1: size: 1, avg Fit: 9
+       Species 1_3_2_2_1_1: size: 5, avg Fit: 26
+       Species 1_6_1: size: 7, avg Fit: 29.4286
+       Species 1_5_2_1_1: size: 1, avg Fit: 10
+       Species 1_4_4_3_1: size: 3, avg Fit: 9.33333
+       Species 1_2_2_2_1: size: 8, avg Fit: 47
+       Species 1_4_4_3_2: size: 3, avg Fit: 9
+       Species 1_3_2_2_1_2: size: 7, avg Fit: 112.143
+       Species 1_6_1_1: size: 3, avg Fit: 9.66667
+       Species 1_5_2_1_1_1: size: 15, avg Fit: 71.0667
+       Species 1_3_2_2_1_2_1: size: 8, avg Fit: 42.125
+       Species 1_2_2_3_1: size: 5, avg Fit: 25.2
+       Species 1_3_2_3_1_1: size: 3, avg Fit: 9.66667
+       Species 1_2_2_2_1_1: size: 6, avg Fit: 25.6667
+       Species 1_3_2_2_1_2_2: size: 19, avg Fit: 62.9474
+       Species 1_3_2_2_1_2_3: size: 17, avg Fit: 63.8824
+       Species 1_5_2_1_1_1_1: size: 7, avg Fit: 38.4286
+       Species 1_3_2_2_1_2_4: size: 8, avg Fit: 107.25
+       Species 1_3_2_2_1_2_5: size: 2, avg Fit: 126
+====== [pre-crossover] Generation 24/49 ======
+Number of Species:  31
+Number of Genomes: 176
+Population Avg. Fitness (pre-cull): 77.2159
+Species Stats:
+       Species 1: size: 1, avg Fit: 9
+       Species 1_2_2: size: 1, avg Fit: 9
+       Species 1_5_4: size: 1, avg Fit: 9
+       Species 1_2_2_1: size: 1, avg Fit: 9
+       Species 1_2_2_2: size: 9, avg Fit: 74
+       Species 1_4_4_4: size: 3, avg Fit: 9.33333
+       Species 1_3_2_2_1: size: 1, avg Fit: 8
+       Species 1_2_2_1_1: size: 3, avg Fit: 9.33333
+       Species 1_2_2_3: size: 14, avg Fit: 116.714
+       Species 1_3_2_3_1: size: 5, avg Fit: 12.2
+       Species 1_4_4_4_1: size: 1, avg Fit: 10
+       Species 1_3_2_2_1_1: size: 5, avg Fit: 25.2
+       Species 1_6_1: size: 6, avg Fit: 43.3333
+       Species 1_5_2_1_1: size: 1, avg Fit: 10
+       Species 1_2_2_2_1: size: 8, avg Fit: 65.875
+       Species 1_4_4_3_2: size: 3, avg Fit: 9.66667
+       Species 1_3_2_2_1_2: size: 17, avg Fit: 118.353
+       Species 1_6_1_1: size: 2, avg Fit: 9.5
+       Species 1_5_2_1_1_1: size: 17, avg Fit: 77.2941
+       Species 1_3_2_2_1_2_1: size: 7, avg Fit: 63.2857
+       Species 1_2_2_3_1: size: 3, avg Fit: 38.6667
+       Species 1_3_2_3_1_1: size: 1, avg Fit: 10
+       Species 1_2_2_2_1_1: size: 5, avg Fit: 27.2
+       Species 1_3_2_2_1_2_2: size: 10, avg Fit: 63.9
+       Species 1_3_2_2_1_2_3: size: 10, avg Fit: 74.9
+       Species 1_5_2_1_1_1_1: size: 1, avg Fit: 48
+       Species 1_3_2_2_1_2_4: size: 17, avg Fit: 156
+       Species 1_3_2_2_1_2_5: size: 19, avg Fit: 102.789
+       Species 1_2_2_2_2: size: 1, avg Fit: 10
+       Species 1_3_2_2_1_2_1_1: size: 1, avg Fit: 9
+       Species 1_2_2_2_1_1_1: size: 2, avg Fit: 28.5
+====== [pre-crossover] Generation 25/49 ======
+Number of Species:  34
+Number of Genomes: 173
+Population Avg. Fitness (pre-cull): 84.1618
+Species Stats:
+       Species 1_5_4: size: 1, avg Fit: 8
+       Species 1_2_2_2: size: 6, avg Fit: 93.5
+       Species 1_4_4_4: size: 3, avg Fit: 9
+       Species 1_3_2_2_1: size: 1, avg Fit: 9
+       Species 1_2_2_1_1: size: 3, avg Fit: 10
+       Species 1_2_2_3: size: 15, avg Fit: 108.8
+       Species 1_3_2_3_1: size: 3, avg Fit: 9.33333
+       Species 1_4_4_4_1: size: 1, avg Fit: 8
+       Species 1_3_2_2_1_1: size: 4, avg Fit: 27.75
+       Species 1_6_1: size: 7, avg Fit: 42
+       Species 1_5_2_1_1: size: 1, avg Fit: 8
+       Species 1_2_2_2_1: size: 9, avg Fit: 80.5556
+       Species 1_4_4_3_2: size: 3, avg Fit: 9.33333
+       Species 1_3_2_2_1_2: size: 16, avg Fit: 118.438
+       Species 1_6_1_1: size: 2, avg Fit: 9.5
+       Species 1_5_2_1_1_1: size: 11, avg Fit: 86.3636
+       Species 1_3_2_2_1_2_1: size: 6, avg Fit: 42.5
+       Species 1_2_2_3_1: size: 6, avg Fit: 47.6667
+       Species 1_3_2_3_1_1: size: 1, avg Fit: 10
+       Species 1_2_2_2_1_1: size: 5, avg Fit: 26.2
+       Species 1_3_2_2_1_2_2: size: 3, avg Fit: 89.6667
+       Species 1_3_2_2_1_2_3: size: 10, avg Fit: 89.7
+       Species 1_5_2_1_1_1_1: size: 1, avg Fit: 9
+       Species 1_3_2_2_1_2_4: size: 20, avg Fit: 155.65
+       Species 1_3_2_2_1_2_5: size: 14, avg Fit: 125.286
+       Species 1_2_2_2_2: size: 1, avg Fit: 127
+       Species 1_3_2_2_1_2_1_1: size: 1, avg Fit: 9
+       Species 1_2_2_2_1_1_1: size: 5, avg Fit: 29.4
+       Species 1_2_2_1_1_1: size: 4, avg Fit: 57
+       Species 1_2_2_3_1_1: size: 1, avg Fit: 10
+       Species 1_2_2_2_1_1_2: size: 1, avg Fit: 43
+       Species 1_2_2_2_1_1_3: size: 1, avg Fit: 83
+       Species 1_2_2_2_1_1_4: size: 1, avg Fit: 89
+       Species 1_3_2_2_1_2_4_1: size: 6, avg Fit: 127.833
+====== [pre-crossover] Generation 26/49 ======
+Number of Species:  37
+Number of Genomes: 178
+Population Avg. Fitness (pre-cull): 96.6292
+Species Stats:
+       Species 1_5_4: size: 1, avg Fit: 10
+       Species 1_2_2_2: size: 25, avg Fit: 102.12
+       Species 1_4_4_4: size: 2, avg Fit: 9
+       Species 1_3_2_2_1: size: 1, avg Fit: 10
+       Species 1_2_2_1_1: size: 2, avg Fit: 8.5
+       Species 1_2_2_3: size: 11, avg Fit: 132.636
+       Species 1_3_2_3_1: size: 2, avg Fit: 9
+       Species 1_4_4_4_1: size: 1, avg Fit: 9
+       Species 1_3_2_2_1_1: size: 4, avg Fit: 28.25
+       Species 1_6_1: size: 5, avg Fit: 50.6
+       Species 1_5_2_1_1: size: 1, avg Fit: 10
+       Species 1_2_2_2_1: size: 8, avg Fit: 73.25
+       Species 1_4_4_3_2: size: 2, avg Fit: 10
+       Species 1_3_2_2_1_2: size: 10, avg Fit: 133.5
+       Species 1_6_1_1: size: 2, avg Fit: 9.5
+       Species 1_5_2_1_1_1: size: 9, avg Fit: 89.7778
+       Species 1_3_2_2_1_2_1: size: 5, avg Fit: 55
+       Species 1_2_2_3_1: size: 5, avg Fit: 52.2
+       Species 1_3_2_3_1_1: size: 1, avg Fit: 10
+       Species 1_2_2_2_1_1: size: 4, avg Fit: 23.5
+       Species 1_3_2_2_1_2_2: size: 12, avg Fit: 170.417
+       Species 1_3_2_2_1_2_3: size: 5, avg Fit: 131.4
+       Species 1_5_2_1_1_1_1: size: 1, avg Fit: 10
+       Species 1_3_2_2_1_2_4: size: 14, avg Fit: 159.929
+       Species 1_3_2_2_1_2_5: size: 12, avg Fit: 132.417
+       Species 1_2_2_2_2: size: 1, avg Fit: 116
+       Species 1_3_2_2_1_2_1_1: size: 1, avg Fit: 10
+       Species 1_2_2_2_1_1_1: size: 4, avg Fit: 32
+       Species 1_2_2_1_1_1: size: 1, avg Fit: 10
+       Species 1_2_2_3_1_1: size: 1, avg Fit: 9
+       Species 1_2_2_2_1_1_2: size: 9, avg Fit: 75.3333
+       Species 1_2_2_2_1_1_3: size: 1, avg Fit: 9
+       Species 1_2_2_2_1_1_4: size: 1, avg Fit: 70
+       Species 1_3_2_2_1_2_4_1: size: 1, avg Fit: 231
+       Species 1_3_2_2_1_2_6: size: 1, avg Fit: 98
+       Species 1_3_2_2_1_2_2_1: size: 8, avg Fit: 113
+       Species 1_3_2_2_1_2_3_1: size: 4, avg Fit: 129.75
+====== [pre-crossover] Generation 27/49 ======
+Number of Species:  44
+Number of Genomes: 189
+Population Avg. Fitness (pre-cull): 113.825
+Species Stats:
+       Species 1_5_4: size: 1, avg Fit: 9
+       Species 1_2_2_2: size: 13, avg Fit: 108.846
+       Species 1_4_4_4: size: 2, avg Fit: 9.5
+       Species 1_3_2_2_1: size: 1, avg Fit: 10
+       Species 1_2_2_1_1: size: 2, avg Fit: 8
+       Species 1_2_2_3: size: 6, avg Fit: 156.833
+       Species 1_3_2_3_1: size: 2, avg Fit: 9
+       Species 1_4_4_4_1: size: 1, avg Fit: 9
+       Species 1_3_2_2_1_1: size: 1, avg Fit: 43
+       Species 1_6_1: size: 5, avg Fit: 58.8
+       Species 1_5_2_1_1: size: 1, avg Fit: 9
+       Species 1_2_2_2_1: size: 6, avg Fit: 117.667
+       Species 1_4_4_3_2: size: 2, avg Fit: 10
+       Species 1_3_2_2_1_2: size: 9, avg Fit: 181.889
+       Species 1_6_1_1: size: 2, avg Fit: 9.5
+       Species 1_5_2_1_1_1: size: 7, avg Fit: 128.714
+       Species 1_3_2_2_1_2_1: size: 5, avg Fit: 61.6
+       Species 1_2_2_3_1: size: 5, avg Fit: 55.6
+       Species 1_3_2_3_1_1: size: 1, avg Fit: 9
+       Species 1_2_2_2_1_1: size: 3, avg Fit: 10.6667
+       Species 1_3_2_2_1_2_2: size: 27, avg Fit: 148.296
+       Species 1_3_2_2_1_2_3: size: 10, avg Fit: 99.4
+       Species 1_5_2_1_1_1_1: size: 1, avg Fit: 9
+       Species 1_3_2_2_1_2_4: size: 10, avg Fit: 160.2
+       Species 1_3_2_2_1_2_5: size: 10, avg Fit: 153.5
+       Species 1_2_2_2_2: size: 2, avg Fit: 96
+       Species 1_3_2_2_1_2_1_1: size: 1, avg Fit: 10
+       Species 1_2_2_2_1_1_1: size: 4, avg Fit: 45.5
+       Species 1_2_2_1_1_1: size: 1, avg Fit: 9
+       Species 1_2_2_3_1_1: size: 1, avg Fit: 10
+       Species 1_2_2_2_1_1_2: size: 6, avg Fit: 98.3333
+       Species 1_2_2_2_1_1_3: size: 1, avg Fit: 10
+       Species 1_2_2_2_1_1_4: size: 1, avg Fit: 64
+       Species 1_3_2_2_1_2_4_1: size: 1, avg Fit: 280
+       Species 1_3_2_2_1_2_6: size: 8, avg Fit: 173.625
+       Species 1_3_2_2_1_2_2_1: size: 9, avg Fit: 164.111
+       Species 1_3_2_2_1_2_3_1: size: 10, avg Fit: 108.6
+       Species 1_2_2_2_3: size: 2, avg Fit: 128
+       Species 1_2_2_3_2: size: 2, avg Fit: 145.5
+       Species 1_2_2_3_3: size: 1, avg Fit: 170
+       Species 1_2_2_3_4: size: 1, avg Fit: 77
+       Species 1_3_2_2_1_1_1: size: 2, avg Fit: 13.5
+       Species 1_3_2_2_1_2_7: size: 1, avg Fit: 181
+       Species 1_3_2_2_1_2_4_2: size: 2, avg Fit: 187.5
+====== [pre-crossover] Generation 28/49 ======
+Number of Species:  44
+Number of Genomes: 195
+Population Avg. Fitness (pre-cull): 128.303
+Species Stats:
+       Species 1_2_2_2: size: 11, avg Fit: 107
+       Species 1_4_4_4: size: 2, avg Fit: 9.5
+       Species 1_3_2_2_1: size: 1, avg Fit: 10
+       Species 1_2_2_1_1: size: 2, avg Fit: 9
+       Species 1_2_2_3: size: 8, avg Fit: 130.125
+       Species 1_3_2_3_1: size: 2, avg Fit: 9.5
+       Species 1_4_4_4_1: size: 1, avg Fit: 10
+       Species 1_3_2_2_1_1: size: 1, avg Fit: 36
+       Species 1_6_1: size: 3, avg Fit: 71.3333
+       Species 1_5_2_1_1: size: 1, avg Fit: 9
+       Species 1_2_2_2_1: size: 1, avg Fit: 90
+       Species 1_3_2_2_1_2: size: 9, avg Fit: 133.444
+       Species 1_6_1_1: size: 2, avg Fit: 10
+       Species 1_5_2_1_1_1: size: 7, avg Fit: 117.714
+       Species 1_3_2_2_1_2_1: size: 9, avg Fit: 102.444
+       Species 1_2_2_3_1: size: 4, avg Fit: 73.75
+       Species 1_3_2_3_1_1: size: 1, avg Fit: 9
+       Species 1_2_2_2_1_1: size: 2, avg Fit: 13
+       Species 1_3_2_2_1_2_2: size: 20, avg Fit: 148.75
+       Species 1_3_2_2_1_2_3: size: 6, avg Fit: 172.333
+       Species 1_5_2_1_1_1_1: size: 1, avg Fit: 13
+       Species 1_3_2_2_1_2_4: size: 16, avg Fit: 183.562
+       Species 1_3_2_2_1_2_5: size: 8, avg Fit: 262.625
+       Species 1_2_2_2_2: size: 1, avg Fit: 141
+       Species 1_3_2_2_1_2_1_1: size: 1, avg Fit: 8
+       Species 1_2_2_2_1_1_1: size: 3, avg Fit: 50
+       Species 1_2_2_1_1_1: size: 1, avg Fit: 8
+       Species 1_2_2_3_1_1: size: 1, avg Fit: 10
+       Species 1_2_2_2_1_1_2: size: 1, avg Fit: 144
+       Species 1_2_2_2_1_1_3: size: 1, avg Fit: 11
+       Species 1_2_2_2_1_1_4: size: 1, avg Fit: 63
+       Species 1_3_2_2_1_2_4_1: size: 1, avg Fit: 40
+       Species 1_3_2_2_1_2_6: size: 9, avg Fit: 198
+       Species 1_3_2_2_1_2_2_1: size: 8, avg Fit: 159.875
+       Species 1_3_2_2_1_2_3_1: size: 6, avg Fit: 97.8333
+       Species 1_2_2_2_3: size: 7, avg Fit: 117.143
+       Species 1_2_2_3_2: size: 8, avg Fit: 157.625
+       Species 1_2_2_3_3: size: 9, avg Fit: 145.222
+       Species 1_2_2_3_4: size: 1, avg Fit: 141
+       Species 1_3_2_2_1_1_1: size: 2, avg Fit: 21
+       Species 1_3_2_2_1_2_7: size: 9, avg Fit: 162
+       Species 1_3_2_2_1_2_4_2: size: 1, avg Fit: 238
+       Species 1_5_2_1_1_2: size: 1, avg Fit: 11
+       Species 1_3_2_2_1_2_8: size: 5, avg Fit: 103.6
+====== [pre-crossover] Generation 29/49 ======
+Number of Species:  44
+Number of Genomes: 192
+Population Avg. Fitness (pre-cull): 154.005
+Species Stats:
+       Species 1_2_2_2: size: 12, avg Fit: 162.083
+       Species 1_3_2_2_1: size: 1, avg Fit: 9
+       Species 1_2_2_1_1: size: 2, avg Fit: 10
+       Species 1_2_2_3: size: 7, avg Fit: 201
+       Species 1_3_2_3_1: size: 2, avg Fit: 9.5
+       Species 1_4_4_4_1: size: 1, avg Fit: 8
+       Species 1_3_2_2_1_1: size: 1, avg Fit: 44
+       Species 1_6_1: size: 4, avg Fit: 65
+       Species 1_5_2_1_1: size: 1, avg Fit: 9
+       Species 1_2_2_2_1: size: 1, avg Fit: 122
+       Species 1_3_2_2_1_2: size: 22, avg Fit: 237.591
+       Species 1_6_1_1: size: 2, avg Fit: 9
+       Species 1_5_2_1_1_1: size: 3, avg Fit: 186.333
+       Species 1_3_2_2_1_2_1: size: 4, avg Fit: 107.5
+       Species 1_2_2_3_1: size: 4, avg Fit: 72
+       Species 1_3_2_3_1_1: size: 1, avg Fit: 12
+       Species 1_2_2_2_1_1: size: 2, avg Fit: 16
+       Species 1_3_2_2_1_2_2: size: 7, avg Fit: 113
+       Species 1_3_2_2_1_2_3: size: 8, avg Fit: 144.125
+       Species 1_5_2_1_1_1_1: size: 1, avg Fit: 18
+       Species 1_3_2_2_1_2_4: size: 19, avg Fit: 207.526
+       Species 1_3_2_2_1_2_5: size: 12, avg Fit: 247.833
+       Species 1_2_2_2_2: size: 1, avg Fit: 161
+       Species 1_3_2_2_1_2_1_1: size: 1, avg Fit: 8
+       Species 1_2_2_2_1_1_1: size: 3, avg Fit: 57
+       Species 1_2_2_1_1_1: size: 1, avg Fit: 11
+       Species 1_2_2_3_1_1: size: 1, avg Fit: 9
+       Species 1_2_2_2_1_1_2: size: 8, avg Fit: 95.875
+       Species 1_2_2_2_1_1_3: size: 2, avg Fit: 54
+       Species 1_2_2_2_1_1_4: size: 1, avg Fit: 8
+       Species 1_3_2_2_1_2_4_1: size: 1, avg Fit: 82
+       Species 1_3_2_2_1_2_6: size: 1, avg Fit: 142
+       Species 1_3_2_2_1_2_2_1: size: 8, avg Fit: 175.5
+       Species 1_3_2_2_1_2_3_1: size: 5, avg Fit: 132.4
+       Species 1_2_2_2_3: size: 6, avg Fit: 131.167
+       Species 1_2_2_3_2: size: 8, avg Fit: 212.375
+       Species 1_2_2_3_3: size: 7, avg Fit: 138.857
+       Species 1_2_2_3_4: size: 7, avg Fit: 187.571
+       Species 1_3_2_2_1_1_1: size: 2, avg Fit: 26
+       Species 1_3_2_2_1_2_7: size: 1, avg Fit: 176
+       Species 1_3_2_2_1_2_4_2: size: 1, avg Fit: 153
+       Species 1_5_2_1_1_2: size: 1, avg Fit: 12
+       Species 1_3_2_2_1_2_8: size: 6, avg Fit: 182.5
+       Species 1_3_2_2_1_2_1_2: size: 3, avg Fit: 163
