@@ -22,7 +22,7 @@
 #include <vector>
 
 
-std::default_random_engine gen(2342342); //random values
+std::default_random_engine gen(1996); //random values
 
 using namespace std;
 class NOV{
@@ -92,7 +92,7 @@ class NOV{
 
 	
 	/**
- 	* @brief adds a new node with set NOV 
+ 	* @brief adds a new node with random NOV 
  	* */
 	void addNode(int direction, double middle_nov){
 		double nov;

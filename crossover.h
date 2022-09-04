@@ -89,10 +89,28 @@ double calcAverageFitness(std::vector <Species> *pop_ptr){
  * @brief calculate how many offspring ALL species should make
  *
  * */
+
 void calcOffspring(std::vector <Species> *pop_ptr, const int MAX_POP){
-	std::vector<Species> &pop = *pop_ptr;
-	//int pop_size = calcTotalPop(&pop);
-	//int vacancy = MAX_POP - pop_size;
+
+	/*HYPERS*/
+	//if species goes 3 gens being below 5% of total pop and <half pop fitness
+	//then than species is given no offspring (end of species)
+	//const int MIDNIGHT = 2;
+	std::vector<Species> &pop = *pop_ptr; //turn pointer into a reference.  Just a preference
+	
+	/*Define the number of generations a species can go without setting a new fitness high score.
+ 	* If this values starts at 5, then on some runs the program will kill the sole initial species
+ 	* before fitter members begin to appear.  To compensate, I added this block of logic to make
+ 	* the program more tolerant until speciation starts to occur*/
+	int MAX_NO_IMPROVEMENT;
+	if(pop.size() >= 8){
+		MAX_NO_IMPROVEMENT = 5;
+	}
+	else{
+		MAX_NO_IMPROVEMENT = 20;	
+	
+	}
+
 	double sumOfSpeciesAdjusted = 0;
 	std::vector <double> sumadj_vec;
 	for(long unsigned int i = 0; i < pop.size(); i++){ //for each species
@@ -103,33 +121,32 @@ void calcOffspring(std::vector <Species> *pop_ptr, const int MAX_POP){
 		//}
 		//pop.genome_vec[i].setOffpsring( );
 	}	
-	double pop_avg_fitness = calcAverageFitness(pop_ptr);
-	for(long unsigned int i = 0; i < pop.size(); i++){ //for each species again
-		/*
- 		std::cout << "sumadj this species=" << sumadj_vec[i] << ", sum adjusted all species="\
-			 << sumOfSpeciesAdjusted << std::endl;
-		*/
-		if(pop[i].size() > 1){
-			//was floor, changed to ceiling 
-			pop[i].setOffspring( ceil( (sumadj_vec[i]/sumOfSpeciesAdjusted) * double(MAX_POP) ) );
-		}
-		else if(pop[i].size() == 1){
-			//std::cout << "pop size of 1 hit in [calcOffspring]\n";
-			if(pop[i].getFitness() < pop_avg_fitness){
-				pop[i].setOffspring(0);
+	//double pop_avg_fitness = calcAverageFitness(pop_ptr);
+	for(long unsigned int i = 0; i < pop.size(); i++){ //for each species
+			
+		if(pop[i].size() > 0){
+			//Elimination of Species based on gens since last improved
+				
+			pop[i].calcFitness(); //calc avg fitness of this species (stored in member variable
+			pop[i].checkImprovement(pop[i].getFitness());//update last_improved or highest_fitness
+			cout << pop[i].getLastImproved() <<" gens since " << pop[i].get_name() << " improved.\n"; //TP
+			if(pop[i].getLastImproved() >= MAX_NO_IMPROVEMENT){
+				pop[i].setOffspring(0); //kill the population
+				std::cout << "|||||||||||||||||MAX GENS NO IMPROVEMENT HIT ON SPECIES: " << pop[i].get_name() << std::endl; 
 			}
-			else{
+			else{ //ie, if we HAVE improved fitness in last 5 generations...
 				pop[i].setOffspring( ceil( (sumadj_vec[i]/sumOfSpeciesAdjusted) * double(MAX_POP) ) );
 			}
 		}
-		else{
+		else{ //ie, if species's size is 0
 			pop[i].setOffspring(0);
 		}
-		//std::cout << "offspring = " << pop[i].getOffspring() << " for species "<< i <<std::endl;
+		std::cout << "sumadj of this species = " << sumadj_vec[i] << " sumOfSpeciesAdjusted = " << sumOfSpeciesAdjusted << "\n";
+		std::cout << "offspring = " << pop[i].getOffspring() << " for species "<< pop[i].get_name() <<std::endl;
 	}	
-	//sleep(4);
 }
-
+				
+				
 /**
  * @breif determines compatibility of 2 genomes
  * see eqauation 1 pg 13
@@ -222,7 +239,7 @@ double compat(Genome A, Genome B){
 	std::cout << "E = " << E << std::endl;
 	std::cout << "D = " << D << std::endl;
 	*/
-	double delta = 1*E/N + 1*D/N + 0.5*W; //1,1,0.5
+	double delta = 4*E/N + 4*D/N + 0.05*W; //1,1,0.5
 	return delta;
 };
 

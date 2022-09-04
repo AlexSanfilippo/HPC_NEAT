@@ -19,18 +19,22 @@ import csv
 import sys
 
 
+TF_ENABLE_ONEDNN_OPTS=0
+
+
 rank = sys.argv[1]
 #print("in evaluate.py, rank detected = ", rank);
 #set seed to get same results on same NNs and same inputs
 
 
 ####CONTROLS AND HYPERPARAMETERS
-#seed = 2 #1996
+seed = 2001 #737 #2 #1996
 max_steps = 500
 
+set_seed = False
 
 
-#np.random.seed(seed)
+np.random.seed(seed)
 
 #1 create input nodes (the same for all genomes)
 input1 = tf.keras.Input(shape=(1,), name = 'INPUT_1')
@@ -69,6 +73,10 @@ fit = []
 node_list = []
 
 layer_name_list = [] #stores list of names of all named layers-used for weight setting part
+
+
+#running total of number of genomes we've made and evaluated on this rank
+genome_count = 0
 
 #node_row = []
 from csv import reader
@@ -208,8 +216,8 @@ with open(filename,'r') as read_obj:
 ##                    print(cur.get_weights())
                 
 
-
-                        
+	
+                #print('rank: ', rank,',   genome: ', genome_count,)
                 #Set the Weights--Using Layer name
                 for name in layer_name_list:
                     cur_layer = model.get_layer(name)
@@ -238,7 +246,9 @@ with open(filename,'r') as read_obj:
                 #env = gym.make('CartPole-v1', render_mode='human',
                 #               new_step_api=True)                 
                 env = gym.make('CartPole-v1') #run without rendering
-                #env.seed(seed)
+                
+                if set_seed:
+                    env.seed(seed)
                 #redefine observation space
 
 
@@ -279,10 +289,10 @@ with open(filename,'r') as read_obj:
         
                 node_list.clear();
                 node_row.clear();
-            #keras.backend.clear_session() #try to clear out old model completely   
-        #print(node_row)
-        layer_name_list.clear()
-        
+            	#keras.backend.clear_session() #try to clear out old model completely   
+        	#print(node_row)
+                layer_name_list.clear()
+                genome_count = genome_count + 1
         if(hit_END == False):
             node_list.append(node_row)
             

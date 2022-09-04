@@ -1,6 +1,6 @@
 /** @author Alexander Sanfilippo
  * @date 11-06-2022
- * @TODO clean up commented code and add comments*/
+ * @TODO complete*/
 
 #ifndef GENE_H_4D4421E5
 #define GENE_H_4D4421E5
@@ -13,7 +13,6 @@ class Gene {
 	public:
 		
 		/*constructors */
-		//Gene(); 
 		Gene(unsigned int input, unsigned int output, double w, bool on){
 			in = input;
 			out = output;
@@ -21,37 +20,8 @@ class Gene {
 			enabled = on;
 			innov_count += 1;
 			innov = innov_count;
-			//innovCountUp();
-			//innov = innov_count;
 		}
 
-		/**
- 		* @brief copy constructor for crossover: makes gene without increasing global innov_count;
- 		* */
-		/*??WHY?? was this ever commented out?  problems?
-		Gene(Gene &g){
-			in = g.in;
-			out = g.out;
-			weight = g.weight;
-			enabled = g.enabled;
-			innov = g.innov;	
-			
-		}
-		*/
-		/*  Antiquated, above constructor works fine
-		Gene(unsigned int input, unsigned int output, double w, bool on, bool initial){
-                        in = input;
-                        out = output;
-                        weight = w;
-                        enabled = on;
-			//static int innov_count;
-			if(initial){
-				innov_count = 1;
-			}
-                        //innovCountUp();
-                        //innov = innov_count;
-                }
-		*/
 		/*member functions-getters and setters*/
 		/**
  		* @brief changes input 
@@ -88,6 +58,7 @@ class Gene {
 		bool getEnabled(){return enabled;};
 		int getInnov(){return innov;}; 
 		int getInnovCount(){ return innov_count; };
+	
 		/**
  		* @brief gives quick data on the gene
  		*
@@ -96,8 +67,6 @@ class Gene {
 			std::cout << "#" << innov << ", "<< in << ", " << \
 			out << ", "  << weight << ", " << enabled << "; ";
 		}
-		//void innovCountUp(){ innov_count += 1;};
-		//int getInnovCount(){ return innov_count;};
 
 	unsigned int in;  //what node it goes from 
 	unsigned int out;  //what node it goes to

@@ -1,6 +1,7 @@
 /** @author Alexander Sanfilippo
  *  * @date 11-06-2022
- *   * @TODO create classes for Species, which holds a vector of Genomes*/
+ *   * @TODO clean up the code, add additional comments
+ */
 
 #ifndef SPECIES_H_8f60af27
 #define SPECIES_H_8f60af27
@@ -22,12 +23,13 @@ class Species {
 		Species(int innov_count){
 			Gene g = Gene(0,0,0,true);
 			g.setInnovCount(innov_count);
+			name = "1";	
 		}
 		/*for making a new species given a genome that does not
  		* fit into any existing species.  Not sure if need a copy
  		* constructor for Genome for this to work right.  Issue 
  		* may arise with deep vs shallow copying.*/
-		Species(Genome g, int innov_count){
+		Species(Genome g, int innov_count, string parent_name, int parent_subspecies_count){	
 			genome_vec.push_back(g);
 			rep = g; 
 			rep_index = 0;
@@ -35,14 +37,105 @@ class Species {
 			//update innov_count 
 			Gene g2 = Gene(0,0,0,true);
                         g2.setInnovCount(innov_count);
+	
+			//give this species a name based on parents name
+			name = parent_name + "_" + to_string(parent_subspecies_count+1);
 
 		}
 
 		std::vector <Genome> genome_vec; //vector of genomes in this species
 		
+
+		/**
+ 		* @brief returns the highest fitness achieved by this species*/
+		double getHighestFitness(){
+			return highest_fitness;
+		} 
 		
-		Genome rep; //ptr to representative genome
-		int rep_index;
+		/**
+ 		* @breif getter function for last_improved, 
+ 		* */
+		int getLastImproved(){
+			return last_improved;
+		}
+			
+		/**
+ 		* @breif setter function for last_improved, 
+ 		* */
+		void setLastImproved(int last){
+			last_improved = last;
+		}
+		
+		/**
+ 		* @breif setter function for last_improved, 
+ 		* */
+		void setHighestFitness(double fit){
+			highest_fitness = fit;
+		}
+		
+		
+		/**
+ 		 * @brief check if new species fitness record has been acheived
+ 		 * @param current_fitness the average fitness of this species this Gen.
+ 		 *
+ 		 */
+		void checkImprovement(double current_fitness){
+			if(current_fitness < highest_fitness){ //if no improvement
+				last_improved += 1; //count number of gens. since last improvement
+			}
+			else{
+				last_improved = 0; //reset generation counter
+				highest_fitness = current_fitness; //set new best species fitness
+			}
+		}
+
+					
+		/**
+ 		* @brief returns this species name
+ 		* @return std::string name*/
+		string get_name(){return name; }
+		
+		/**
+ 		* @brief sets this species name
+ 		* @return void*/
+		void set_name(string n){
+			name = n; 
+		}
+		/**
+ 		* @brief return number of subspecies that broke away from this species
+ 		* */
+		int get_num_subspecies(){return num_subspecies; }
+		
+		/**
+ 		* @breif set number of subspecies
+ 		* */
+		void set_num_subspecies(int n){
+			num_subspecies = n;
+		}
+		/**
+ 		* @brief increment the number of subspecies
+ 		* */
+		void add_subspecies(){
+			num_subspecies += 1;
+		}
+
+		//DEATH CLOCK FXNS
+		void set_death_clock(int n){
+			death_clock = n;
+		}	
+		int get_death_clock(){
+			return death_clock;
+		}
+		void add_death_clock(){
+			death_clock += 1;
+		}
+		
+
+
+		Genome rep; //copy of representative genome
+		int rep_index; //index of representative genome
+
+
 		/**
  		* @brief randomly chooses a new representative genome for speciation
  		*
@@ -51,13 +144,13 @@ class Species {
 			auto uid = std::uniform_int_distribution<>(0,genome_vec.size() - 1); 
 			int rand_index = uid(mygen);
 			rep_index = rand_index;
-			rep = genome_vec[rand_index]; //is a pointer simpler than a copy here?
+			rep = genome_vec[rand_index]; 
 		}
 		/**
  		* @brief Wrapper for std::vector size function
  		* */
 		int size(){
-			return genome_vec.size();
+			return int(genome_vec.size());
 		}
 		/**
  		* @brief sets the avg fitness of the species
@@ -120,7 +213,8 @@ class Species {
 		
 		/**
  		* @brief sorts the Species by fitness
- 		* uses quick sort algorithm - used wikipedia pseudo as guide
+ 		* uses quick sort algorithm-written myself using the Hoare-scheme pseudocode found in 
+ 		* Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein. Introduction to Algorithms, Second Edition. MIT Press and McGraw-Hill, 2001. ISBN 0-262-03293-7. Chapter 7: Quicksort, pp. 145–164
  		* */
 		void sort(std::vector <Genome>& V, int low, int high){
 			//std::cout << "inside sort() low=" <<low<<", high="<<high << std::endl;
@@ -199,8 +293,14 @@ class Species {
 
 	private:
 		int offspring; //number of children to produce during reproduction
-		double fitness; //the average fitness of this species
+		double fitness; //the average (non-adjusted) fitness of this species
+				
+		string name;
+		int num_subspecies = 0;
+		int death_clock = 0; //count up each time species is sickly ( <5% size of pop and <avg pop fitness
 
+		int last_improved = 0; //generations since this species achieved a higher fitness
+		double highest_fitness = 0; //highest fitness this species has ever achieved 
 };
 
 #endif

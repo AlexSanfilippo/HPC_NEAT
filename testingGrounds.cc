@@ -43,7 +43,7 @@
 //put this function in crossover.h later
 void crossover(Genome g1, Genome g2, Genome * child);
 void matchMaker(Species s, int* parents, double avg_fitness);
-void reproduce(std::vector <Species> *pop_ptr, const int MAX_POP, NOV *nov);
+void reproduce(std::vector <Species> *pop_ptr, const int MAX_POP, const int DIST_THRESHOLD, NOV *nov);
 void  writeToFileRecv(ofstream *fp);
 
 
@@ -58,11 +58,13 @@ int main(int argc, char **argv){
 		
 
 	/*SIMULATION HYPERPARAMETERS*/
-	const int POP_SIZE  = 100; //number of genomes in the whole population
+	const int POP_SIZE  = 150; //number of genomes in the whole population
 	const int NUM_MUT = 1; //number of mutation
-	const int NUM_GEN = 20; //number of generations	
-	int gen_count = 0;
-	NOV nov(4,1); //create Nodal Order Vector object
+	const int NUM_GEN = 50; //number of generations	
+	const int DIST_THRESHOLD = 1.5;
+	int gen_count = 0; //?
+
+	NOV nov(4/*inputs*/, 1/*outputs*/); //create Nodal Order Vector object
 	
 	std::vector <Species> pop; //population, a vector of species
 	Species species_init = Species(0); //the initial species
@@ -73,6 +75,8 @@ int main(int argc, char **argv){
 	pop.push_back(species_init); //add species to population
 
 	
+	/*======TIMINGS AND DATA COLLECTION=======*/
+
 	ofstream timefp;
 	timefp.open("eval_timings.csv"); //open file for timings
 
@@ -82,37 +86,57 @@ int main(int argc, char **argv){
 	ofstream fit_fp;
 	fit_fp.open("pop_avg_fitness.csv");
 
-	/*MPI EXPERIMENT*/
+	ofstream best_genome_fp;
+	best_genome_fp.open("best_genome.csv"); //record best genome each generation 
 
-	int nprocs, myid;
+	ofstream best_fitness_fp; //record highest fitness each generation
+	best_fitness_fp.open("best_fitness.csv");
+
+	ofstream best_species_fp;
+	best_species_fp.open("best_species.csv");
+		
+	ofstream genfp;
+	genfp.open("GENDATA.csv");	
+
+	ofstream hangtimefp;
+	hangtimefp.open("HANGTIME.csv");
+
+	ofstream popsizefp;
+	popsizefp.open("POPSIZE.csv");
+
+	auto start_runtime = std::chrono::high_resolution_clock::now();
+
 	
-	/* //old IO stuff	
-	MPI_File handle;
-	int buffer[3] = {7,8,9};
-	*/
+	/*MPI BEGINS*/
+	int nprocs, myid;
 	MPI_Init(&argc, &argv);
-	//MPI_Init(0,0);
 	MPI_Comm_size(MPI_COMM_WORLD, &nprocs);
 	MPI_Comm_rank(MPI_COMM_WORLD, &myid);
-	//std::cout << "inside "<< myid <<"/" << nprocs << " MPI processes\n"; 
+
+
+	/*catch if the number of genomes is less than the number of proccess */
+	if(POP_SIZE < nprocs){
+		MPI_Finalize();
+		cout << "ERROR: The number of genomes (" << POP_SIZE << ") must not be less than "\
+			<< "the number of processors (" << nprocs << ")\n";
+		return 1;
+	}
+
 
 	/*determine start index and quantity of genomes to write to 
  	* each file--need to do this in main loop to adjust for varying
  	* total number of genomes in the population*/
-	//on all procs
-	int start = 0;	
-	int genomes_per_proc;
+	int start = 0; //which genome index of the pop this rank starts at
+	int genomes_per_proc; //number of genomes to assign to this process rank
 	
 	std::vector <int> start_vec = {0}; //stores starting genome index for each proc
 	std::vector <int> genomes_per_proc_vec; //stores ngenomes of each proc
 	//on proc 0
-	int ngenomes;
+	int ngenomes = 0;
 	if(myid == 0){
 		ngenomes = calcTotalPop(&pop);
-		//std::cout << "ngenomes=" << ngenomes << endl;
-		//std::vector <int> genomes_per_proc; //index=proc id, stores starting index of genomes
-		int small = floor(double(ngenomes)/double(nprocs));
-		int big = small + 1;
+		int small = floor(double(ngenomes)/double(nprocs)); //smaller number of genomes
+		int big = small + 1; //larger number of genomes
 		int num_big_procs = ngenomes % nprocs;
 		if(num_big_procs > 0){ //proc 0 is always first to get big
 			genomes_per_proc = big;
@@ -122,7 +146,6 @@ int main(int argc, char **argv){
 			genomes_per_proc = small;
 			genomes_per_proc_vec.push_back(small);
 		}
-		//cout << "num_big_procs=" << num_big_procs << ", small="<<small<<", big="<< big<< endl;
 		for(int i = 1; i < nprocs; i++){//for each proc
 			int temp_genomes_per_proc;
 			if(i < num_big_procs){
@@ -184,6 +207,8 @@ int main(int argc, char **argv){
 	
 	//Mutate all the genomes in the species & calc fitness
 	for(int g = 0; g < NUM_GEN; g++){ //each gen
+
+		//record population size for ploting
 
 		/*[Parallel]*/
 		/* //OLD
@@ -371,39 +396,115 @@ int main(int argc, char **argv){
 		
 		fp.close();
 			
+
+		//TP: Before call evaluate, write the genes to a file
+				
+		ofstream genefp;
+		genefp.open("GENEDATA.csv");
+		int which_genome = 0; //counter
+		if(myid==0){
+			for(int i = 0; i < int(pop.size()); i++){//for each species 
+				for(int j = 0; j < pop[i].size(); j++){//for each genome
+					which_genome += 1;
+					genefp << "GENOME " << which_genome << std::endl;
+					for(int k = 0; k < pop[i].genome_vec[j].size(); k++){ //for each gene
+						//write all 5 gene info bits to the file
+						genefp << pop[i].genome_vec[j].gene_vec[k].getInnov() <<\
+						", "<<pop[i].genome_vec[j].gene_vec[k].getIn() <<\
+						", "<<pop[i].genome_vec[j].gene_vec[k].getOut() <<\
+						", "<<pop[i].genome_vec[j].gene_vec[k].getWeight() <<\
+						", "<<pop[i].genome_vec[j].gene_vec[k].getEnabled() << std::endl; 
+					}
+				}
+			}
+		}
+		genefp.close();
+		
+		/*PROGRESS: Genomes seem fine, but somehow written to files wrong.  Check serialized genomes*/
+				
+		ofstream serialfp;
+		serialfp.open("SERIALDATA.csv");
+		which_genome = 0; //counter
+		if(myid==0){
+			for(int i = 0; i < int(pop.size()); i++){//for each species 
+				for(int j = 0; j < pop[i].size(); j++){//for each genome
+					which_genome += 1;
+					int serial_count = 0;
+					serialfp << "GENOME " << which_genome << std::endl;
+					for(int k = 0; k < int(pop[i].genome_vec[j].row_lens_1d.size()); k++){ //for each row length in row)info_1d
+						for(int m = 0; m < pop[i].genome_vec[j].row_lens_1d[k]; m++){//for each item in row
+							serialfp <<  pop[i].genome_vec[j].node_info_1d[serial_count] << ", ";
+							serial_count += 1;
+						}
+						serialfp << std::endl;	
+					}
+				}
+			}
+		}
+		serialfp.close();
+
+
+
 		/*Call python script to evaluated all genome's fitnesses*/
 		auto stop_gen_a = std::chrono::high_resolution_clock::now(); //stop timing before eval
-		auto start = std::chrono::high_resolution_clock::now();
-		
+			
+		MPI_Barrier(MPI_COMM_WORLD); //all ranks need to return their fitnesses first
+		auto start = std::chrono::high_resolution_clock::now(); //start eval. timing
 		string e_caller = "python evaluate.py " + to_string(myid);
 		const char *callme = e_caller.c_str();
-		//MPI_Barrier(MPI_COMM_WORLD);
 		system(callme);
-		MPI_Barrier(MPI_COMM_WORLD); //all ranks need to return their fitnesses first
-		//const char* fitness_combiner = "cat local_fitness* > fitness.csv"
-		//system(fitness_combiner);
-		//system("./calls_evaluate");
-		//cout << "in rank #" << myid << endl;
-		//system("cat genome_data.csv");
-		//std::cout <<"[MainLoop] called evaluate.py\n";
-			
-		auto stop = std::chrono::high_resolution_clock::now();
-		auto start_gen_b = std::chrono::high_resolution_clock::now(); //start timing after eval
-		auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-		timefp << "GEN " << g << ": " << double(duration.count())/1000000 << "\n";
-		//std::cout << "GEN " << g << ": " << duration.count()/1000000 << ",\n";	
 		
-		bool fitness_stop = false;
+		//HANGTIME: record the hangtime of each
+		auto hangtime_start = std::chrono::high_resolution_clock::now();
+		MPI_Barrier(MPI_COMM_WORLD); //all ranks need to return their fitnesses first
+		 //for recording cumulative hangtime each generation
+		auto hangtime_stop = std::chrono::high_resolution_clock::now();
+
+		//create vector of start times from eachrank
+		double *hangtime_vec; //malloc this
+		hangtime_vec = (double*) malloc(nprocs * sizeof(double));
+
+		//convert hangtime to a double
+		auto hangtime_duration = std::chrono::duration_cast<std::chrono::microseconds>(hangtime_stop - hangtime_start);
+		auto hangtime_duration_double = double(hangtime_duration.count())/1000000; //convert to double and seconds
+		
+		//gather all hangtime start values from all ranks onto rank 0 (root)
+		MPI_Gather(&hangtime_duration_double, 1, MPI_DOUBLE, hangtime_vec, 1, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+
+		if(myid==0){
+									
+			double cum_hangtime = 0; //cumulative hagntime of this generation
+			for(int i = 0; i < nprocs; i++){
+				cum_hangtime += hangtime_vec[i];
+			}
+			hangtimefp << cum_hangtime << std::endl; //record hangtime each generation to a file
+		}
+		free(hangtime_vec); //free the malloc'd pointer
+		//record evaluation time (overal, not per rank, not cumulative)
+		if(myid == 0){	
+			auto stop = std::chrono::high_resolution_clock::now();
+			auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+			timefp << g << "," << double(duration.count())/1000000 << std::endl;	
+		}
+
+			
+		auto start_gen_b = std::chrono::high_resolution_clock::now(); //start timing after eval
+				
+		int gcount_best = 0; //order index of best genome-needed to print best genome to file each gen
+
+		bool fitness_stop = false; //stops the program if target fitness is reached by a genome
 		/*[Parallel] Combine the fitness files into 1 big fitness file*/
 		if(myid==0){
 			std::cout << "rank " << myid << "combing fitnessX.csv files" << endl;
 			//open another fp for writing out to file
-			
+				
+			//record the best fitness of each generation
+			int highest_fitness = 0;			
+	
 			ofstream fpfitness;
 			fpfitness.open("fitness.csv");
 
 			int gcount = 0; //count which genome we're one as we go thru fitnesses
-			
 			for(int i = 0; i < nprocs; i++){
 				string fitfile = "fitness" + to_string(i) + ".csv";
 					
@@ -415,8 +516,13 @@ int main(int argc, char **argv){
 				stringstream s(line);
 				for(int j = 0; j <genomes_per_proc_vec[i]; j++){
 					getline(s,score,',');
+					//check for highest score this generation
+					if(stoi(score) > highest_fitness){
+						highest_fitness = stoi(score);
+						gcount_best = gcount;
+					}
 					//STOP CONDITION
-					if(stoi(score) > 2000){
+					if(stoi(score) > 495){
 						cout << "built a perfect NN at " << gcount << endl;
 						int a = 0;
 						while(a <= gcount){
@@ -436,9 +542,15 @@ int main(int argc, char **argv){
 					gcount += 1;
 				}
 				fpin.close();
+	
+				
 				//read in the file data(like below)
 				//write the file data to fitness.csv
 			}
+				
+			//record highest fitness of this generation
+			best_fitness_fp << g << "," << highest_fitness << "," << std::endl;
+	
 			fpfitness.close();
 		}
 		//broadcast "target fitness reached" signal to all procs from root (0)
@@ -447,7 +559,7 @@ int main(int argc, char **argv){
 
 			/*Read the fitnesses from the file and assign to genomes' members*/
 			
-			std::cout << "rank 0 reading in fitness.csv into all genomes";
+			//std::cout << "rank 0 reading in fitness.csv into all genomes";
 
 			fstream fpin; //create file pointer
 			fpin.open("fitness.csv", ios::in); //open the file
@@ -469,9 +581,31 @@ int main(int argc, char **argv){
 			fpin.close();
 
 			/*calc species' and global average fitness scores*/
+			int best_species = 0;  //index in pop of the highest fitness species
+			double best_species_fitness = 0;
 			for(int h = 0; h < int(pop.size()); h++){
 				pop[h].calcFitness();
-			}			
+				if(pop[h].getFitness() > best_species_fitness){ //find best species for printing to file
+					best_species_fitness = pop[h].getFitness();
+					best_species = h;
+				}
+			}
+			best_species_fp << g << "," << best_species_fitness << "," << std::endl; //record best species fitness
+			
+			//record the best genome in all of pop for this generation
+		
+			int best_fitness = 0;
+			int indexG = 0; //index of the best genome in the best species
+			for(int i = 0; i < pop[best_species].size(); i++){ //for each genome
+				if ( pop[best_species].genome_vec[i].getFitness() > best_fitness){
+					indexG = i;
+					best_fitness = pop[best_species].genome_vec[i].getFitness();
+				}
+				
+			} 
+							
+			//write the best genome's node data to a file for graphing the NN
+			pop[best_species].genome_vec[indexG].writeToFile(&best_genome_fp, gcount_best);	
 
 
 			/*=== Generational Pop. Print Out  ===*/	
@@ -480,26 +614,38 @@ int main(int argc, char **argv){
 			cout << "Number of Genomes: " << calcTotalPop(&pop) << std::endl;
 			double pop_avg_fitness = calcAverageFitness(&pop);
 			cout << "Population Avg. Fitness (pre-cull): " << pop_avg_fitness << endl;	
-			fit_fp << pop_avg_fitness << endl;	
+			fit_fp << pop_avg_fitness << ",";	
 			cout << "Species Stats:\n";
 			for(int j = 0; j < (int)pop.size(); j++){
-				cout << "       Species " << j << ": size: " << pop[j].size() << ", avg Fit: "\
+				cout << "       Species " << pop[j].get_name() << ": size: " << pop[j].size() << ", avg Fit: "\
 					<< pop[j].getFitness() << "\n";
 			}
-	 
-
+	 		//repeat printout to file
+			genfp << "====== [pre-crossover] Generation " << gen_count << "/" << NUM_GEN-1 <<" ======\n";
+			genfp << "Number of Species:  " << pop.size() << "\n";
+			genfp << "Number of Genomes: " << calcTotalPop(&pop) << std::endl;
+				
+			popsizefp << calcTotalPop(&pop) << ",";
+ 
+			genfp << "Population Avg. Fitness (pre-cull): " << pop_avg_fitness << endl;	
+			genfp << "Species Stats:\n";
+			for(int j = 0; j < (int)pop.size(); j++){
+				genfp << "       Species " << pop[j].get_name() << ": size: " << pop[j].size() << ", avg Fit: "\
+					<< pop[j].getFitness() << "\n";
+			}
+			
 			
 			ngenomes = calcTotalPop(&pop);// record pre-reproduce pop size for rebalancing in Next Generation
 			/*reproduce (create new population from fittest of old pop)*/
-			reproduce(&pop, POP_SIZE, &nov);
+			reproduce(&pop, POP_SIZE, DIST_THRESHOLD, &nov);
 			cout << "[POST-CROSSOVER]Number of Genomes: " << calcTotalPop(&pop) << std::endl;
 			//std::cout <<"[MainLoop] called reproduce\n";
 			gen_count++;
 			auto stop_gen_b = std::chrono::high_resolution_clock::now(); //stop timing before eval
 			auto neat_duration_a = std::chrono::duration_cast<std::chrono::microseconds>(stop_gen_a - start_gen_a); 
 			auto neat_duration_b = std::chrono::duration_cast<std::chrono::microseconds>(stop_gen_b - start_gen_b);
-			neat_time_fp << "GEN " << g << ": " << double((neat_duration_a.count() + neat_duration_b.count())) / 1000000 << "\n";
-			//std::cout << "nt GEN " << g << ": " << double(neat_duration_b.count()) / 1000 << "\n";
+			neat_time_fp << g << "," << double((neat_duration_a.count() + neat_duration_b.count())) / 1000000 <<\
+				 "," << std::endl;
 		}
 		
 		//if we hit a fitness score we want, stop the program
@@ -513,7 +659,12 @@ int main(int argc, char **argv){
 	neat_time_fp.close(); //close fp for writing time of NEAT execution/Generation
 	timefp.close(); //close file pointer for recording evaluation times/generation
 	fit_fp.close();
-
+	best_genome_fp.close(); //best genome (nodal info)/gen
+	best_species_fp.close(); //best species avg fitness/gen
+	best_fitness_fp.close(); //best individual genome fitness/gen	
+	genfp.close();
+	hangtimefp.close();
+	popsizefp.close();
 	/*END OF MAIN LOOP: printing results to confirm code working*/
 	/*printing results...*/
 	if(myid == 0){
@@ -523,23 +674,16 @@ int main(int argc, char **argv){
 		cout << "Number of Genomes: " << calcTotalPop(&pop) << std::endl;
 		cout << "Genomes per Species:\n";
 		for(int j = 0; j < (int)pop.size(); j++){
-			cout << "	Species " << j << " has " << pop[j].size() << " genomes\n";
+			cout << "	Species " << pop[j].get_name() << " has " << pop[j].size() << " genomes\n";
 		}
 	}
-	
-	 //print the last two species's genomes
-	/*
-	cout << "Last species consists of these Genomes:\n";
-	for(int i = 0; i < pop[pop.size()-1].size(); i++){ //for each genome in last species in pop
-		pop[pop.size()-1].genome_vec[i].summary(); //print summary of genome
-	}
-				
-	cout << "Second-to-Last species consists of these Genomes:\n";
-	for(int i = 0; i < pop[pop.size()-2].size(); i++){ //for each genome in last species in pop
-		pop[pop.size()-2].genome_vec[i].summary(); //print summary of genome
-	}
-	*/
+			
+	auto stop_runtime = std::chrono::high_resolution_clock::now();
+	 
+	auto total_runtime = std::chrono::duration_cast<std::chrono::microseconds>(stop_runtime - start_runtime);
 
+		
+	cout << "Total Runtime(seconds): " << double(total_runtime.count())/1000000 << "\n"; 
 	
 	MPI_Finalize(); //the REAL Finalize call
 	return 0;
@@ -556,6 +700,13 @@ void  writeToFileRecv(ofstream *fp){
 	std::vector <double> node_info_1d; //holds all connection and weight info
 	std::vector <int> row_lens_1d; //holds row length of each node for a given genome
 	
+	//NEW: send multiple genomes' node info at once
+	//recieve the size of the full 1d array 
+	//MPI_Recv(&full_1d_size, 1, MPI_INT, 0, 989, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+	//receive the full 1d array
+	//MPI_Recv(&full_1d_array[0], full_1d_size, MPI_DOUBLE, 0, 990, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+	//receive the array of genome sizes, ie, how many nodes per genome
+	//recv the array of 
 	MPI_Recv(&node_info_size, 1, MPI_INT, 0, 991, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 	//std::cout << "recv node_info_size " << node_info_size << endl;
 	MPI_Recv(&row_lens_size, 1, MPI_INT, 0, 992, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
@@ -572,19 +723,20 @@ void  writeToFileRecv(ofstream *fp){
 	for(int i = 0; i < row_lens_size; i++){ //for each row in nodeinfo
 		int row_len = row_lens_1d[i]; //get number of items in row "i"
 		if(node_info_1d[count] != 0){ //if this node has at least one input
-			*fp << i << ",";//write the node number first
+			//*fp << i << ",";//write the node number first
+			//*fp << node_info_1d[count] <<","; //write node number first
 			for(int j = 0; j < row_len; j++){ //for each item in this row
-				*fp << node_info_1d[count] << ","; //write to file
+				*fp << node_info_1d[count] << ","; //write to filei
 				count += 1;
 			}
-			*fp << "\n"; //at end of row print new line 
+			*fp << std::endl; //at end of row print new line 
 		}
 		else{
 			count += row_len; //skip this whole row if it has no inputs
 		}
 		
 	}
-	*fp << "END," << "\n"; //at end of genome print "END"
+	*fp << "END," << std::endl; //at end of genome print "END"
 
 }
 
@@ -598,11 +750,7 @@ void crossover(Genome g1, Genome g2, Genome *child){
 
 	//std::cout << "inside crossover()...\n";
 	
-	//create an empty Genome called child to store the inherited genes
-	//Genome child(true);
-	 
 	auto urd = std::uniform_real_distribution<>(0,1); //random probability
-	//auto uid = std::uniform_int_distribution<>(0,gene_vec.size() - 1); //random gene
 
 	bool g1_done = false;
 	bool g2_done = false;
@@ -621,55 +769,55 @@ void crossover(Genome g1, Genome g2, Genome *child){
 			if(g1.gene_vec[i].getInnov() == g2.gene_vec[j].getInnov()){ //matching genes
 				//std::cout << "after 2nd if\n";
 				//pick parent to inherit the gene from
-				if(urd(gen) < 0.5){
-					Gene gene(g1.gene_vec[i]); //cpy construct gene
-					child->gene_vec.push_back(gene); //add gene to child
+				if(urd(gen) < 0.5){ //choose genome 1
 					
-					if(child->gene_vec.back().getEnabled() == false){
-						if(g1.getAdjusted() > g2.getAdjusted()){//if disabled gene has higher fitness
+					if(g1.gene_vec[i].getEnabled() == false){ //if the new gene is disabled
+						if(g1.getAdjusted() > g2.getAdjusted()){//if disabled gene has higher fitness genome
+	
+							Gene gene(g1.gene_vec[i]); //cpy construct gene
+							child->gene_vec.push_back(gene); //add gene to child
+
 							if(urd(gen) > 0.75){ //25% odds to switch to enabled
 								child->gene_vec.back().setEnabled(true);
 							}
+
 						}
-						else{
-							child->gene_vec.back().setEnabled(true);
-						}
+						else{ //if this is NOT the fitter genome and the genome IS DISabled
+										
+							Gene gene(g2.gene_vec[j]); //cpy construct gene from OTHER genome
+							child->gene_vec.push_back(gene); //add gene to child
+						}	
+					}
+					else{	
+						Gene gene(g1.gene_vec[i]); //cpy construct gene
+						child->gene_vec.push_back(gene); //add gene to child
 					}
 				}	
 				else{
-					Gene gene(g2.gene_vec[j]); //cpy construct gene
-                                        child->gene_vec.push_back(gene); //add gene to child
 					
-					if(child->gene_vec.back().getEnabled() == false){
+					if(g2.gene_vec[j].getEnabled() == false){
 						if(g2.getAdjusted() > g1.getAdjusted()){//if disabled gene has higher fitness
+							
+							Gene gene(g2.gene_vec[j]); //cpy construct gene
+							child->gene_vec.push_back(gene); //add gene to child
+									
 							if(urd(gen) > 0.75){ //25% odds to switch to enabled
 								child->gene_vec.back().setEnabled(true);
 							}
 						}
-						else{
-							child->gene_vec.back().setEnabled(true);
+						else{		
+							Gene gene(g1.gene_vec[i]); //cpy construct gene
+							child->gene_vec.push_back(gene); //add gene to child
 						}
 					}
+					else{	
+						Gene gene(g2.gene_vec[j]); //cpy construct gene
+						child->gene_vec.push_back(gene); //add gene to child
+					}
+					
 					
 				}
 			
-				//disabled check--OLD
-				/*
-				//std::cout << "b4 3rd if\n";			
-				if(g1.gene_vec[i].getEnabled() == false || g2.gene_vec[j].getEnabled() == false ){
-					//std::cout << "after 34d if\n";
-					if(urd(gen) < 0.75){
-						//set gene to disabled in child
-						child->gene_vec.back().setEnabled(true);
-						// *last->setEnabled(false);
-					}
-					else{
-						//set gene to enabled in child
-						child->gene_vec.back().setEnabled(true);
-                                                //last.setEnabled(true);
-					}
-				}
-				*/
 				i++;
 				j++;
 			}	
@@ -677,7 +825,7 @@ void crossover(Genome g1, Genome g2, Genome *child){
 			else{ //the innov numbers do not match
 				if(g1.gene_vec[i].getInnov() > g2.gene_vec[j].getInnov()){ //if D in g2
 					//determine which parent is fitter
-					if( g1.getAdjusted() <= g2.getAdjusted() ){
+					if( g1.getAdjusted() < g2.getAdjusted() ){
 						//inherit the Disjoint Gene
 						Gene gene ( g2.gene_vec[j] );
 						child->gene_vec.push_back(gene);
@@ -688,7 +836,7 @@ void crossover(Genome g1, Genome g2, Genome *child){
 				}
 				else{ //if D in g1
 					
-					if( g1.getAdjusted() >= g2.getAdjusted() ){
+					if( g1.getAdjusted() > g2.getAdjusted() ){
 						//inherit the Disjoint Gene
 						Gene gene ( g1.gene_vec[i] );
 						child->gene_vec.push_back(gene);
@@ -716,7 +864,7 @@ void crossover(Genome g1, Genome g2, Genome *child){
 			if(g1_done == true){ //g2 must have the E gene
 				//std::cout << "adding excess gene from g2 to child...\n";
 				//std::cout << "g2 has size: " << g2.size() << "and j = " << j << endl;
-				if( g1.getAdjusted() <= g2.getAdjusted() ){	
+				if( g1.getAdjusted() < g2.getAdjusted() ){	
 					Gene temp(g2.gene_vec[j]);
 					
 					child->gene_vec.push_back(temp);
@@ -725,7 +873,7 @@ void crossover(Genome g1, Genome g2, Genome *child){
 			}		
 			else{ //g2 == done, so g1 has the E gene
 				//std::cout << "adding excess gene from g1 to child...\n";
-				if( g1.getAdjusted() >= g2.getAdjusted() ){
+				if( g1.getAdjusted() > g2.getAdjusted() ){
                                         Gene temp(g1.gene_vec[i]);
                                         child->gene_vec.push_back(temp);
                                 }
@@ -796,7 +944,7 @@ void matchMaker(Species s, int* parents, double avg_fitness){
  * @brief calls all the functions related to reproduction for a given population 
  *
  * */
-void reproduce(std::vector <Species> *pop_ptr, const int MAX_POP, NOV *nov){
+void reproduce(std::vector <Species> *pop_ptr, const int MAX_POP, const int DIST_THRESHOLD, NOV *nov){
 	
 	//std::cout << "in reproduce()...\n";	
 
@@ -812,7 +960,7 @@ void reproduce(std::vector <Species> *pop_ptr, const int MAX_POP, NOV *nov){
 
 
 	/*HYPER PARAMETERS*/ //add these to a struct in a world_setting.h file later on
-	int dist_threshold = 3; //paper says 3
+	int dist_threshold = DIST_THRESHOLD; //paper says 3
 	
 
 
@@ -831,17 +979,24 @@ void reproduce(std::vector <Species> *pop_ptr, const int MAX_POP, NOV *nov){
 	//NEW POPULATION-for new generation	
 	std::vector <Species> new_pop;
 	Species temp_spec = Species(old_innov_count);
-	int sec_index = 0;
-	for(long unsigned int i = 0; i < pop.size(); i++){ //for each species in old pop
-		if(!(pop[i].genome_vec.empty())){ //if this old species had genomes
+	int sec_index = 0; //'second' index for the new population vector
+	for(long unsigned int i = 0; i < pop.size(); i++){ //copy over old species info into new population
+		if(!(pop[i].genome_vec.empty()) && pop[i].getOffspring()!= 0 ){ //if not empty genomes & gets children
+			//copy vital info from old species into new species in new population
 			Species empty_spec = Species(old_innov_count);
 			new_pop.push_back(empty_spec); //add empty species to new pop
 			new_pop[sec_index].rep = pop[i].rep; //deep copy?
+			new_pop[sec_index].set_name( pop[i].get_name());
+			new_pop[sec_index].set_num_subspecies(pop[i].get_num_subspecies());
+			new_pop[sec_index].setHighestFitness(pop[i].getHighestFitness());
+			new_pop[sec_index].setLastImproved(pop[i].getLastImproved());
+			
+			//fittest genome survives into next generation 
+			pop[i].genome_vec[0].clearNodeInfo(); //clear its node info vectors
+			new_pop[sec_index].genome_vec.push_back(pop[i].genome_vec[0]);
+			
+
 			sec_index++;
-		}
-		else{
-			//std::cout << "an empty species (" <<i<< ") was skipped\n";
-			//sleep(2);
 		}
 	}
 	//std::cout << "finished adding old species to new_pop, skipping empty species\n";
@@ -879,6 +1034,11 @@ void reproduce(std::vector <Species> *pop_ptr, const int MAX_POP, NOV *nov){
 						parents[0] << std::endl; */
 					//just add the same identical gene to the species
 					child = pop[i].genome_vec[parents[0]]; //child is CLONE of parent
+					
+					//clear the node-info vectors of the child
+					child.clearNodeInfo();
+				
+		
 					//std::cout << "cloned the child\n";
 					//new_pop[i].genome_vec.push_back(child_ace); //place child in parent species
 					//std::cout <<"\ntriggered asexual reproduction in species " << i << "\n";
@@ -901,19 +1061,15 @@ void reproduce(std::vector <Species> *pop_ptr, const int MAX_POP, NOV *nov){
 				}
 				
 				if(child_placed == false){ //if no compatible species found for this child
-					//std::cout << "adding new species..."<<std::endl;
 					//then make a new species with this child as its rep
-					Species new_spec = Species(child, old_innov_count); //create new species with child genome as first genome
+					string old_name = new_pop[i].get_name();
+                                        int subspecies_count = new_pop[i].get_num_subspecies();
+                                    
+					new_pop[i].add_subspecies();
+					Species new_spec = Species(child, old_innov_count, old_name, subspecies_count);  //create new species with child genome as first genome
 					//above constructor handles setting the representative.
 					new_pop.push_back(new_spec);
-					//std::cout << "added new species."<<std::endl;
-					//std::cout << "new species created for child\n";
-					//std::cout << "Placed child " << child_count << " in NEW species " << std::endl;
 				}
-			}
-			//this else block is TP only
-			else {
-				std::cout << "caught -1 parents at "<< i << "/" << pop_size << std::endl;
 			}
 		}
 	}
